@@ -18,7 +18,7 @@ Use this script to get essential tools and apps on a clean installation of macOS
 - [nodejs](https://caskroom.github.io)
 - [bashy](https://github.com/pablopunk/bashy)
 - [Powerline fonts](https://github.com/powerline/fonts)
-- [dotfiles](https://github.com/pablopunk/dotfiles)
+- [pablopunk/dotfiles](https://github.com/pablopunk/dotfiles)
 
 ## Apps (casks)
 
