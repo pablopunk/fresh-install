@@ -4,8 +4,10 @@
 
 Use this script to get essential tools and apps on a clean installation of macOS
 
+Easy install:
+
 ```shell
-./mac-fresh-install.sh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master/mac-fresh-install.sh)"
 ```
 
 ## Utils
