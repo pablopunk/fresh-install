@@ -20,7 +20,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - [nodejs](https://caskroom.github.io)
 - [bashy](https://github.com/pablopunk/bashy)
 - [Powerline fonts](https://github.com/powerline/fonts)
-- [dotfiles](https://github.com/pablopunk/dotfiles)
+- [pablopunk/dotfiles](https://github.com/pablopunk/dotfiles)
 
 ## Apps (casks)
 
