@@ -11,33 +11,34 @@ function pr {
   echo -e "$cyan$bold$step_symbol $1$normal"
 }
 
+function is {
+  hash $1 2>/dev/null && true || false
+}
+
 # Install command line tools
 pr "Installing command line tools"
-xcode-select --install
+is gcc || xcode-select --install
 
 # Install homebrew
-
-pr "Installing homebrew.."/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+pr "Installing homebrew.."
+is brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # install homebrew cask
+pr "Installing homebrew cask.."
 brew tap caskroom/cask
 
-pr "Installing homebrew cask.."
-
 # Install wget,vim
-
 pr "Installing some utilities.."
-brew install vim wget
+is vim || brew install vim
+is wget || brew install wget
 
 # Install nodejs
-
 pr "Installing nodejs.."
-brew install node
+is node || brew install node
 
 # Install bashy
-
 pr "Installing bashy.."
-npm install --global bashy
+is bashy || npm install --global bashy
 
 # Install powerline fonts
 pr "Installing powerline fonts.."
@@ -55,4 +56,4 @@ while read line; do
   brew cask install $line;
 done < <(curl -sL https://gist.github.com/pablopunk/048e164bb0fd2920711483029d9cc915/raw)
 
-echo -e "$green$bold ✓ DONE!$normal"
+echo -e "$green${bold}✓ DONE!$normal"
