@@ -31,6 +31,7 @@ brew tap caskroom/cask
 pr "Installing some utilities.."
 is vim || brew install vim
 is wget || brew install wget
+is ack || brew install ack
 
 # Install nodejs
 pr "Installing nodejs.."
