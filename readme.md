@@ -27,7 +27,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - appcleaner
 - caffeine
 - caret
-- clipmenu
+- clipy
 - etcher
 - gitkraken
 - google-chrome
