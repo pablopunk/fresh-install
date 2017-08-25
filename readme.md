@@ -37,8 +37,6 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - now
 - postman
 - sequel-pro
-- soundflower
-- soundflowerbed
 - telegram-desktop
 - visual-studio-code
 - vlc
