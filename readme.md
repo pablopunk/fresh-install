@@ -17,7 +17,6 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - [Homebrew cask](https://caskroom.github.io)
 - `wget`
 - `vim`
-- `exa`
 - [nodejs](https://caskroom.github.io)
 - [bashy](https://github.com/pablopunk/bashy)
 - [Powerline fonts](https://github.com/powerline/fonts)
