@@ -39,6 +39,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - postman
 - sequel-pro
 - telegram-desktop
+- tmux
 - visual-studio-code
 - vlc
 - witch
