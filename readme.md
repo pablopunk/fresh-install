@@ -34,12 +34,12 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - google-chrome
 - healthi
 - hyper
+- iterm2
 - kap
 - now
 - postman
 - sequel-pro
 - telegram-desktop
-- tmux
 - visual-studio-code
 - vlc
 - witch
