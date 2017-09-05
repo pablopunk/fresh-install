@@ -41,7 +41,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - sequel-pro
 - skype
 - spotify
-- telegram
+- telegram-desktop
 - transmission
 - vlc
 - witch
