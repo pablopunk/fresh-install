@@ -40,7 +40,6 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - postman
 - sequel-pro
 - telegram-desktop
-- visual-studio-code
 - vlc
 - witch
 - wkhtmltopdf
