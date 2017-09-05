@@ -39,7 +39,10 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - now
 - postman
 - sequel-pro
-- telegram-desktop
+- skype
+- spotify
+- telegram
+- transmission
 - vlc
 - witch
 - wkhtmltopdf
