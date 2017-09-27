@@ -31,7 +31,7 @@ brew tap caskroom/cask
 pr "Installing some utilities.."
 is vim || brew install vim
 is wget || brew install wget
-is ag || brew install the_silver_searcher
+is ag || brew install the_silver_searcher
 is tmux || brew install tmux
 
 # Install nodejs
