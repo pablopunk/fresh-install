@@ -42,24 +42,21 @@ is brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Home
 step "HOMEBREW CASK"
 brew tap caskroom/cask
 
-# Install wget,vim
+# Utils
 step "UTILITIES"
 brewy vim
 brewy wget
 brewy ag
 brewy tmux
 brewy reattach-to-user-namespace
-
-# Install nodejs
-pr "Installing nodejs"
-is node || brew install node
+brewy node
 
 # Install bashy
 pr "Installing bashy"
 is bashy || npm install --global bashy
 
 # Install powerline fonts
-pr "Installing powerline fonts"
+step "POWERLINE FONTS"
 git clone https://github.com/powerline/fonts /tmp/fonts
 /tmp/fonts/install.sh
 
