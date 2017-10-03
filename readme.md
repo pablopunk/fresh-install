@@ -15,34 +15,14 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - Xcode command line tools
 - [Homebrew](https://brew.sh)
 - [Homebrew cask](https://caskroom.github.io)
-- `wget`
-- `vim`
-- `tmux`
-- [nodejs](https://caskroom.github.io)
-- [bashy](https://github.com/pablopunk/bashy)
+- Utils
+  - `wget`
+  - `vim`
+  - `tmux`
+  - `ag` a.k.a the_silver_searcher
+  - `reattach-to-user-namespace`
+  - [nodejs](https://caskroom.github.io)
+  - [bashy](https://github.com/pablopunk/bashy)
 - [Powerline fonts](https://github.com/powerline/fonts)
 - [pablopunk/dotfiles](https://github.com/pablopunk/dotfiles)
-
-## Apps (casks)
-
-- appcleaner
-- caffeine
-- caret
-- clipy
-- etcher
-- gitkraken
-- google-chrome
-- healthi
-- hyper
-- iterm2
-- kap
-- now
-- postman
-- sequel-pro
-- skype
-- spotify
-- telegram-desktop
-- transmission
-- vlc
-- witch
-- wkhtmltopdf
+- [These mac apps](https://gist.github.com/pablopunk/048e164bb0fd2920711483029d9cc915/raw)
