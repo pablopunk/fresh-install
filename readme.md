@@ -20,7 +20,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
   - `vim` cause I'm a freak and I edit 24/7 with vim
   - `tmux` cause vim was not enough
   - `ag` a.k.a the_silver_searcher (to use *Ack* in vim, better than *grep*)
-  - `reattach-to-user-namespace`
+  - `reattach-to-user-namespace` to make Mac clipboard work in *tmux*
   - [`node`](https://nodejs.org) cause I can't live without it
   - [`bashy`](https://github.com/pablopunk/bashy) to look fabulous
 - [Powerline fonts](https://github.com/powerline/fonts) although I use *Hack* now lol
