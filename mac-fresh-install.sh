@@ -55,10 +55,13 @@ brewy node
 pr "Installing bashy"
 is bashy || npm install --global bashy
 
-# Install powerline fonts
-step "POWERLINE FONTS"
+# Install fonts
+step "FONTS"
+pr "Powerline fonts"
 git clone https://github.com/powerline/fonts /tmp/fonts
 /tmp/fonts/install.sh
+brew tap caskroom/fonts
+casky font-fira-code
 
 # Dotfiles
 step "CONFIG FILES"
