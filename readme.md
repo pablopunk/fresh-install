@@ -15,7 +15,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - Xcode command line tools
 - [Homebrew](https://brew.sh) package manager
 - [Homebrew cask](https://caskroom.github.io) to install mac apps
-- Utils
+- Command line tools
   - `wget` cause *curl* is alone
   - `vim` cause I'm a freak and I edit 24/7 with vim
   - `tmux` cause vim was not enough
@@ -23,6 +23,6 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
   - `reattach-to-user-namespace` to make Mac clipboard work in *tmux*
   - [`node`](https://nodejs.org) cause I can't live without it
   - [`bashy`](https://github.com/pablopunk/bashy) to look fabulous
-- [Powerline fonts](https://github.com/powerline/fonts) although I use *Hack* now lol
+- Fira Code and [Powerline Fonts](https://github.com/powerline/fonts)
 - Config files found in [pablopunk/dotfiles](https://github.com/pablopunk/dotfiles), best repo I've ever made
 - [Some mac apps](https://gist.github.com/pablopunk/048e164bb0fd2920711483029d9cc915/raw) I wanna have
