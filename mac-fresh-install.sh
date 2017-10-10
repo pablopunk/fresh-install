@@ -5,15 +5,15 @@ ld="\x01$(tput bold)\x02"
 normal="\x01$(tput sgr0)\x02"
 cyan="\x01\033[36m\x02"
 green="\x01\033[32m\x02"
-dot="⦿"
-arrow="↪"
+step_symbol="❤︎"
+pr_symbol="↪"
 
 function pr {
-  echo -e "$cyan$bold$arrow $1$normal"
+  echo -e "$cyan$bold$pr_symbol $1$normal"
 }
 
 function step {
-  echo -e "$green$bold$dot $1$normal"
+  echo -e "$green$bold$step_symbol $1$normal"
 }
 
 function is {
@@ -31,19 +31,19 @@ function casky {
 }
 
 # Install command line tools
-step "XCODE COMMAND LINE TOOLS"
+step "Xcode command line tools"
 is gcc || xcode-select --install
 
 # Install homebrew
-step "HOMEBREW CASK"
+step "Homebrew (package manager)"
 is brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # install homebrew cask
-step "HOMEBREW CASK"
+step "Homebrew cask (app manager)"
 brew tap caskroom/cask
 
 # Utils
-step "UTILITIES"
+step "More command line tools"
 brewy vim
 brewy wget
 brewy ag
@@ -56,7 +56,7 @@ pr "Installing bashy"
 is bashy || npm install --global bashy
 
 # Install fonts
-step "FONTS"
+step "Fonts"
 pr "Powerline fonts"
 git clone https://github.com/powerline/fonts /tmp/fonts
 /tmp/fonts/install.sh
@@ -64,12 +64,12 @@ brew tap caskroom/fonts
 casky font-fira-code
 
 # Dotfiles
-step "CONFIG FILES"
+step "Configuration files"
 git clone https://github.com/pablopunk/dotfiles ~/.dotfiles
 ~/.dotfiles/install.sh
 
 # Install apps
-step "MAC APPS"
+step "Apps"
 while read line; do
   casky $line;
 done < <(curl -sL https://gist.github.com/pablopunk/048e164bb0fd2920711483029d9cc915/raw)
