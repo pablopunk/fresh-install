@@ -67,6 +67,7 @@ casky font-fira-code
 step "Configuration files"
 git clone https://github.com/pablopunk/dotfiles ~/.dotfiles
 ~/.dotfiles/install.sh
+npm config set prefix '~/.npm-global'
 
 # Install apps
 step "Apps"
