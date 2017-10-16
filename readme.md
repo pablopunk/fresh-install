@@ -17,7 +17,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - [Homebrew cask](https://caskroom.github.io) to install mac apps
 - Command line tools
   - `wget` cause *curl* is alone
-  - `vim` cause I'm a freak and I edit 24/7 with vim
+  - `neovim` cause I'm a freak and I edit 24/7 with vim
   - `tmux` cause vim was not enough
   - `ag` a.k.a the_silver_searcher (to use *Ack* in vim, better than *grep*)
   - `reattach-to-user-namespace` to make Mac clipboard work in *tmux*

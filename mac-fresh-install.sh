@@ -44,7 +44,7 @@ brew tap caskroom/cask
 
 # Utils
 step "More command line tools"
-brewy vim
+brewy neovim
 brewy wget
 brewy ag
 brewy tmux
