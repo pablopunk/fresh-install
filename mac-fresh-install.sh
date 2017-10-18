@@ -44,7 +44,9 @@ brew tap caskroom/cask
 
 # Utils
 step "More command line tools"
-brewy neovim
+is nvim || brewy neovim
+brewy ctags
+brewy fd
 brewy wget
 brewy ag
 brewy tmux
@@ -59,15 +61,17 @@ is bashy || npm install --global bashy
 step "Fonts"
 pr "Powerline fonts"
 git clone https://github.com/powerline/fonts /tmp/fonts
-/tmp/fonts/install.sh
+bash /tmp/fonts/install.sh
 brew tap caskroom/fonts
 casky font-fira-code
 
 # Dotfiles
-step "Configuration files"
-git clone https://github.com/pablopunk/dotfiles ~/.dotfiles
-~/.dotfiles/install.sh
-npm config set prefix '~/.npm-global'
+step "Configuration"
+pr "Dotfiles"
+git clone https://github.com/pablopunk/dotfiles $HOME/.dotfiles
+[ -d "$HOME/.dotfiles" ] && bash $HOME/.dotfiles/install.sh
+pr "Npm config"
+npm config set prefix "$HOME/.npm-global"
 
 # Install apps
 step "Apps"
