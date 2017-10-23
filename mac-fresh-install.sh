@@ -49,6 +49,7 @@ brewy ctags
 brewy fd
 brewy wget
 brewy ag
+brewy koekeishiya/formulae/kwm
 brewy tmux
 brewy reattach-to-user-namespace
 brewy node

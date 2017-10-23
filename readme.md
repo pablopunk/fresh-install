@@ -19,6 +19,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
   - `wget` cause *curl* is alone
   - `neovim` cause I'm a freak and I edit 24/7 with vim
   - `tmux` cause vim was not enough
+  - `kwm` a tiling window manager with sexy gaps
   - `ctags` to create project tags files
   - `fd` better/faster/friendly alternative to `find`
   - `ag` a.k.a the_silver_searcher (to use *Ack* in vim, better than *grep*)
