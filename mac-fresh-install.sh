@@ -53,6 +53,7 @@ brewy koekeishiya/formulae/kwm
 brewy tmux
 brewy reattach-to-user-namespace
 brewy node
+npm config set prefix "$HOME/.npm-global"
 
 # Install bashy
 pr "Installing bashy"
@@ -71,8 +72,6 @@ step "Configuration"
 pr "Dotfiles"
 git clone https://github.com/pablopunk/dotfiles $HOME/.dotfiles
 [ -d "$HOME/.dotfiles" ] && bash $HOME/.dotfiles/install.sh
-pr "Npm config"
-npm config set prefix "$HOME/.npm-global"
 
 # Install apps
 step "Apps"
