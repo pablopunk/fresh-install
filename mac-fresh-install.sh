@@ -66,6 +66,7 @@ pr "Powerline fonts"
 git clone https://github.com/powerline/fonts /tmp/fonts
 bash /tmp/fonts/install.sh
 brew tap caskroom/fonts
+pr "Fira code"
 casky font-fira-code
 
 # Dotfiles
