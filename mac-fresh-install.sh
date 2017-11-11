@@ -53,6 +53,7 @@ brewy koekeishiya/formulae/kwm
 brewy tmux
 brewy reattach-to-user-namespace
 brewy node
+brewy mosh
 npm config set prefix "$HOME/.npm-global"
 
 # Install bashy
