@@ -28,5 +28,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
   - [`node`](https://nodejs.org) cause I can't live without it
   - [`bashy`](https://github.com/pablopunk/bashy) to look fabulous
 - Fira Code and [Powerline Fonts](https://github.com/powerline/fonts)
-- Config files found in [pablopunk/dotfiles](https://github.com/pablopunk/dotfiles), best repo I've ever made
+- Configuration
+  - Config files found in [pablopunk/dotfiles](https://github.com/pablopunk/dotfiles), best repo I've ever made
+  - Make keyboard repeat blazing fast
 - [Some mac apps](https://gist.github.com/pablopunk/048e164bb0fd2920711483029d9cc915/raw) I wanna have
