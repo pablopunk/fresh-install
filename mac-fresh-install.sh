@@ -85,4 +85,4 @@ while read line; do
   casky $line;
 done < <(curl -sL https://gist.github.com/pablopunk/048e164bb0fd2920711483029d9cc915/raw)
 
-echo -e "$green$bold✓ DONE!$normal"
+echo -e "$green${bold}✓ DONE!$normal"
