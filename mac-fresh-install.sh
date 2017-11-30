@@ -1,7 +1,7 @@
 #!/bin/bash
 # Copyright Pablo Varela 2016
 
-ld="\x01$(tput bold)\x02"
+bold="\x01$(tput bold)\x02"
 normal="\x01$(tput sgr0)\x02"
 cyan="\x01\033[36m\x02"
 green="\x01\033[32m\x02"
@@ -85,4 +85,4 @@ while read line; do
   casky $line;
 done < <(curl -sL https://gist.github.com/pablopunk/048e164bb0fd2920711483029d9cc915/raw)
 
-echo -e "$green${bold}✓ DONE!$normal"
+echo -e "$green$bold✓ DONE!$normal"
