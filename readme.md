@@ -25,6 +25,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
   - `ag` a.k.a the_silver_searcher (to use *Ack* in vim, better than *grep*)
   - `reattach-to-user-namespace` to make Mac clipboard work in *tmux*
   - `mosh` cause it's better than ssh
+  - `fzy` for a better fuzzy finder
   - [`node`](https://nodejs.org) cause I can't live without it
   - [`bashy`](https://github.com/pablopunk/bashy) to look fabulous
 - Fira Code and [Powerline Fonts](https://github.com/powerline/fonts)

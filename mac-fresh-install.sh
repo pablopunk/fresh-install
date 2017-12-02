@@ -54,6 +54,7 @@ brewy tmux
 brewy reattach-to-user-namespace
 brewy node
 brewy mosh
+brewy fzy
 npm config set prefix "$HOME/.npm-global"
 
 # Install bashy
