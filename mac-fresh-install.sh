@@ -77,7 +77,7 @@ git clone https://github.com/pablopunk/dotfiles $HOME/.dotfiles
 [ -d "$HOME/.dotfiles" ] && bash $HOME/.dotfiles/install.sh
 pr "Keyboard configuration"
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false && \
-defaults write NSGlobalDomain KeyRepeat -int 1 && \
+defaults write NSGlobalDomain KeyRepeat -int 2 && \
 defaults write NSGlobalDomain InitialKeyRepeat -int 10 && \
 
 # Install apps
