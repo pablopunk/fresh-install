@@ -78,7 +78,11 @@ git clone https://github.com/pablopunk/dotfiles $HOME/.dotfiles
 pr "Keyboard configuration"
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false && \
 defaults write NSGlobalDomain KeyRepeat -int 2 && \
-defaults write NSGlobalDomain InitialKeyRepeat -int 10 && \
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+pr "Trackpad configuration"
+sudo defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true && \
+sudo defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1 && \
+sudo defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1 && \
 
 # Install apps
 step "Apps"
@@ -86,4 +90,4 @@ while read line; do
   casky $line;
 done < <(curl -sL https://gist.github.com/pablopunk/048e164bb0fd2920711483029d9cc915/raw)
 
-echo -e "$green${bold}✓ DONE!$normal"
+echo -e "$green${bold}✓ DONE! You should restart your computer to get everything working as expected.$normal"
