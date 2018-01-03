@@ -10,7 +10,7 @@ Easy install:
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master/mac-fresh-install.sh)"
 ```
 
-## Utils
+## What does this install?
 
 - Xcode command line tools
 - [Homebrew](https://brew.sh) package manager
@@ -20,3 +20,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - [Some mac apps](./cask)
 - [Dotfiles](https://github.com/pablopunk/dotfiles)
 - Keyboard configurations
+
+## Configuration
+
+The script is easily configurable, just fork this repo and edit the files to get your own apps, tools and configurations.
