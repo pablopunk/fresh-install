@@ -45,8 +45,8 @@ function install_from_github {
 }
 
 function install_dotfiles {
-  git clone $dotfiles_repo $HOME/.dotfiles
-  bash $HOME/.dotfiles/install.sh
+  git clone $dotfiles_repo $dotfiles_folder
+  bash ${dotfiles_folder}/install.sh
 }
 
 function keyboard_config {
