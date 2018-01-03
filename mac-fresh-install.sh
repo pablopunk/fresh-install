@@ -7,7 +7,7 @@ cyan="\x01\033[36m\x02"
 green="\x01\033[32m\x02"
 step_symbol="❤︎"
 pr_symbol="↪"
-github_raw="https://github.com/pablopunk/mac-fresh-install/blob/master/"
+github_raw="https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master/"
 dotfiles_repo="https://github.com/pablopunk/dotfiles"
 dotfiles_folder="$HOME/.dotfiles"
 
@@ -25,7 +25,7 @@ function is {
 
 function brewy {
   pr "Installing tool '$1'"
-  is $1 || brew install $1
+  is $1 || brew install $1 2> /dev/null
 }
 
 function casky {
@@ -40,7 +40,7 @@ function npmy {
 
 function install_from_github {
   while read line; do
-    ${1}y $1
+    ${1}y $line
   done < <(curl -sL "$github_raw/$1")
 }
 
