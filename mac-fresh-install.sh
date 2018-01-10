@@ -7,7 +7,7 @@ cyan="\x01\033[36m\x02"
 green="\x01\033[32m\x02"
 step_symbol="❤︎"
 pr_symbol="↪"
-github_raw="https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master/"
+github_raw="https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master/install"
 dotfiles_repo="https://github.com/pablopunk/dotfiles"
 dotfiles_folder="$HOME/.dotfiles"
 
