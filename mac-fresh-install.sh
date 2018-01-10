@@ -1,16 +1,19 @@
 #!/bin/bash
-# Copyright Pablo Varela 2017
+# Copyright Pablo Varela 2018
 
+# Custom
+github_raw="https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master/install"
+dotfiles_repo="https://github.com/pablopunk/dotfiles" # The repo should have an `install.sh` script
+dotfiles_folder="$HOME/.dotfiles"
+npm_global_dir="$HOME/.npm-global"
+
+# Globals
 bold="\x01$(tput bold)\x02"
 normal="\x01$(tput sgr0)\x02"
 cyan="\x01\033[36m\x02"
 green="\x01\033[32m\x02"
 step_symbol="#"
 pr_symbol="↪"
-github_raw="https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master/install"
-dotfiles_repo="https://github.com/pablopunk/dotfiles"
-dotfiles_folder="$HOME/.dotfiles"
-npm_global_dir="$HOME/.npm-global"
 
 function pr {
   echo -e "$cyan$bold$pr_symbol $1$normal"
