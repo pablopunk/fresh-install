@@ -8,6 +8,5 @@ nmap
 node
 reattach-to-user-namespace
 tmux
-todo-txt
 wget
 yarn
