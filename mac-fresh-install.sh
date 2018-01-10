@@ -5,22 +5,28 @@ bold="\x01$(tput bold)\x02"
 normal="\x01$(tput sgr0)\x02"
 cyan="\x01\033[36m\x02"
 green="\x01\033[32m\x02"
-step_symbol="❤︎"
+step_symbol="#"
 pr_symbol="↪"
 github_raw="https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master/install"
 dotfiles_repo="https://github.com/pablopunk/dotfiles"
 dotfiles_folder="$HOME/.dotfiles"
+npm_global_dir="$HOME/.npm-global"
 
 function pr {
   echo -e "$cyan$bold$pr_symbol $1$normal"
 }
 
 function step {
+  echo
   echo -e "$green$bold$step_symbol $1$normal"
 }
 
 function is {
   hash $1 2>/dev/null && true || false
+}
+
+function is_npm_installed {
+  ls "$npm_global_dir/lib/node_modules/$1" > /dev/null 2>&1
 }
 
 function brewy {
@@ -35,7 +41,7 @@ function casky {
 
 function npmy {
   pr "Installing module '$1'"
-  npm i -g $1 > /dev/null
+  is_npm_installed $1 || npm i -g $1 > /dev/null
 }
 
 function install_from_github {
@@ -58,15 +64,18 @@ function keyboard_config {
 # Install command line tools
 step "Xcode command line tools"
 is gcc || xcode-select --install
+pr "Installed"
 
 # Install homebrew
 step "Homebrew (package manager)"
 is brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+pr "Installed"
 
 # install homebrew cask
 step "Homebrew cask (app manager)"
 brew tap caskroom/cask
 brew tap caskroom/fonts
+pr "Installed"
 
 # Utils
 step "More command line tools"
@@ -74,7 +83,7 @@ install_from_github brew
 
 # Npm modules
 step "Npm global modules"
-npm config set prefix "$HOME/.npm-global" && \
+npm config set prefix $npm_global_dir && \
 install_from_github npm
 
 # Install apps
@@ -89,4 +98,5 @@ pr "Dotfiles"
 pr "Keyboard configuration"
 keyboard_config
 
+echo
 echo -e "$green${bold}✓ DONE! You should restart your computer to get everything working as expected.$normal"
