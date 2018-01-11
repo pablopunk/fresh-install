@@ -101,5 +101,8 @@ pr "Dotfiles"
 pr "Keyboard configuration"
 keyboard_config
 
+pr "Disable Apple persistance"
+defaults write -g ApplePersistence -bool no
+
 echo
 echo -e "$green${bold}✓ DONE! You should restart your computer to get everything working as expected.$normal"
