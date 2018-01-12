@@ -60,8 +60,8 @@ function install_dotfiles {
 
 function keyboard_config {
   defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false && \
-  defaults write NSGlobalDomain KeyRepeat -int 2 && \
-  defaults write NSGlobalDomain InitialKeyRepeat -int 10
+  defaults write NSGlobalDomain KeyRepeat -int 1 && \
+  defaults write NSGlobalDomain InitialKeyRepeat -int 15
 }
 
 # Install command line tools
