@@ -28,7 +28,8 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - Xcode command line tools
 - [Homebrew](https://brew.sh) package manager
 - [Homebrew cask](https://caskroom.github.io) to install mac apps
-- [Some command line tools](./install/brew)
+- [Some command line tools from brew](./install/brew)
+- [Some command line tools from pip3](./install/pip3)
 - [Some npm modules](./install/npm)
 - [Some mac apps](./install/cask)
 - [Dotfiles](https://github.com/pablopunk/dotfiles)

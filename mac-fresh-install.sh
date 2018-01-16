@@ -33,8 +33,8 @@ function is_npm_installed {
 }
 
 function brewy {
-  pr "Installing tool '$1'"
-  is $1 || brew install $1 2> /dev/null
+  pr "Installing tool '$1' from brew"
+  is $1 || brew install $@ 2> /dev/null
 }
 
 function casky {
@@ -43,8 +43,13 @@ function casky {
 }
 
 function npmy {
-  pr "Installing module '$1'"
-  is_npm_installed $1 || npm i -g $1 > /dev/null
+  pr "Installing module '$1' from npm"
+  is_npm_installed $1 || npm i -g $@ > /dev/null
+}
+
+function pip3y {
+  pr "Installing tool '$1' from pip3"
+  pip3 install $@ 2> /dev/null
 }
 
 function install_from_github {
@@ -83,6 +88,7 @@ pr "Installed"
 # Utils
 step "More command line tools"
 install_from_github brew
+install_from_github pip3
 
 # Npm modules
 step "Npm global modules"
