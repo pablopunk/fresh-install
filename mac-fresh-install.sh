@@ -49,7 +49,7 @@ function npmy {
 
 function pip3y {
   pr "Installing tool (from pip3) '$1'"
-  pip3 install $@ 2> /dev/null
+  pip3 install $@ 2> /dev/null 1>&2
 }
 
 function install_from_github {
