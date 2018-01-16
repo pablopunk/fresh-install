@@ -33,7 +33,7 @@ function is_npm_installed {
 }
 
 function brewy {
-  pr "Installing tool '$1' from brew"
+  pr "Installing tool (from brew) '$1'"
   is $1 || brew install $@ 2> /dev/null
 }
 
@@ -43,12 +43,12 @@ function casky {
 }
 
 function npmy {
-  pr "Installing module '$1' from npm"
+  pr "Installing module (from npm) '$1'"
   is_npm_installed $1 || npm i -g $@ > /dev/null
 }
 
 function pip3y {
-  pr "Installing tool '$1' from pip3"
+  pr "Installing tool (from pip3) '$1'"
   pip3 install $@ 2> /dev/null
 }
 
