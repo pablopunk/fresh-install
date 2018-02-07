@@ -107,6 +107,9 @@ pr "Dotfiles"
 pr "Keyboard configuration"
 keyboard_config
 
+pr "Git configuration"
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+
 pr "Disable Apple persistance"
 defaults write -g ApplePersistence -bool no
 

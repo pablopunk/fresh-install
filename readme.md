@@ -34,4 +34,5 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 - [Some mac apps](./install/cask)
 - [Dotfiles](https://github.com/pablopunk/dotfiles)
 - Keyboard configurations
+- Global git configuration
 - [Disable Apple persistance](https://apple.stackexchange.com/questions/124367/stop-mavericks-from-relaunching-applications)
