@@ -1,6 +1,6 @@
 # Mac Fresh Installation
 
-> Essential tools and apps you are to lazy to install
+> Essential tools and apps you are too lazy to install
 
 Don't like to recover your sysmtem from a backup? With this
 tool you can install a fresh copy of macOS any day and still
