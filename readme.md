@@ -17,7 +17,7 @@ To get specific tools/apps, just fork this repo to fit your needs.
 ### Easy install:
 
 ```shell
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master/fresh-install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/master/fresh-install.sh)"
 ```
 
 
