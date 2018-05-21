@@ -28,7 +28,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-inst
 |[homebrew](https://brew.sh)|x||
 |[homebrew cask](https://caskroom.github.io)|x||
 |[some cli tools from brew](./install/brew)|x||
-|[some cli tools from apt](./install/apt)|x||
+|[some cli tools from apt](./install/apt)||x|
 |[some cli tools from pip3](./install/pip3)|x|x|
 |[some npm modules](./install/npm)|x|x|
 |[some apps](./install/cask)|x||
