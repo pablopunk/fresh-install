@@ -129,6 +129,7 @@ then
   step "APT tools"
   pr "Adding repositories"
   add_apt_repositories
+  sudo apt update
   pr "Installing tools"
   install_from_github apt
 fi

@@ -1,4 +1,4 @@
-# Mac Fresh Installation
+# *NIX Fresh Installation
 
 > Essential tools and apps you are too lazy to install
 
