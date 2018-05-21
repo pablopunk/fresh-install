@@ -2,37 +2,37 @@
 
 > Essential tools and apps you are too lazy to install
 
-Don't like to recover your sysmtem from a backup? With this
-tool you can install a fresh copy of macOS any day and still
-have all the tools you want.
+Don't like to recovering your sysmtem from a backup? With this tool you can install a fresh copy of *macOS* or *debian based linux* any day and still have all the tools you want.
 
 
 ## Requirements
 
-Not much, just a modern mac with an internet connection will work.
+Not much, just a modern version of mac/linux with an internet connection will work.
 
 
 ## Use
 
-Use this script to get essential tools and apps on a clean installation of macOS. To get specific tools/apps, just fork this repo to fit your needs.
+To get specific tools/apps, just fork this repo to fit your needs.
 
 ### Easy install:
 
 ```shell
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master/mac-fresh-install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master/fresh-install.sh)"
 ```
 
 
 ## What does this install?
 
-- Xcode command line tools
-- [Homebrew](https://brew.sh) package manager
-- [Homebrew cask](https://caskroom.github.io) to install mac apps
-- [Some command line tools from brew](./install/brew)
-- [Some command line tools from pip3](./install/pip3)
-- [Some npm modules](./install/npm)
-- [Some mac apps](./install/cask)
-- [Dotfiles](https://github.com/pablopunk/dotfiles)
-- Keyboard configurations
-- Global git configuration
-- [Disable Apple persistance](https://apple.stackexchange.com/questions/124367/stop-mavericks-from-relaunching-applications)
+| | Mac | Linux |
+|-|:---:|:-----:|
+|[homebrew](https://brew.sh)|x||
+|[homebrew cask](https://caskroom.github.io)|x||
+|[some cli tools from brew](./install/brew)|x||
+|[some cli tools from apt](./install/apt)|x||
+|[some cli tools from pip3](./install/pip3)|x|x|
+|[some npm modules](./install/npm)|x|x|
+|[some apps](./install/cask)|x||
+|[my dotfiles](https://github.com/pablopunk/dotfiles)|x|x|
+|keyboard config|x||
+|global git config|x|x|
+|[Disable Apple persistance](https://apple.stackexchange.com/questions/124367/stop-mavericks-from-relaunching-applications)|x||

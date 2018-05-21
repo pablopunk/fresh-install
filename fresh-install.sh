@@ -1,7 +1,7 @@
 #!/bin/bash
 # Copyright Pablo Varela 2018
 
-# Custom
+# Customize!
 github_raw="https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master/install"
 dotfiles_repo="https://github.com/pablopunk/dotfiles" # The repo should have an `install.sh` script
 dotfiles_folder="$HOME/.dotfiles"
@@ -14,6 +14,23 @@ cyan="\x01\033[36m\x02"
 green="\x01\033[32m\x02"
 step_symbol="#"
 pr_symbol="↪"
+
+
+# *nix
+if [ "$(uname)" = "Linux" ]
+then
+  linux=1
+else
+  mac=1
+fi
+
+function is_mac {
+  [ "$mac" = "1" ]
+}
+
+function is_linux {
+  [ "$linux" = "1" ]
+}
 
 function pr {
   echo -e "$cyan$bold$pr_symbol $1$normal"
@@ -30,6 +47,12 @@ function is {
 
 function is_npm_installed {
   ls "$npm_global_dir/lib/node_modules/$1" > /dev/null 2>&1
+}
+
+function add_apt_repositories {
+  while read line; do
+    sudo add-apt-repository -y $line
+  done < <(curl -sL "$github_raw/apt-repository")
 }
 
 function brewy {
@@ -52,6 +75,11 @@ function pip3y {
   pip3 install $@ 2> /dev/null 1>&2
 }
 
+function apty {
+  pr "Installing tool (from npm) '$1'"
+  sudo apt install -y $1 2> /dev/null 1>&2
+}
+
 function install_from_github {
   while read line; do
     ${1}y $line
@@ -69,25 +97,45 @@ function keyboard_config {
   defaults write NSGlobalDomain InitialKeyRepeat -int 15
 }
 
-# Install command line tools
-step "Xcode command line tools"
-is gcc || xcode-select --install
-pr "Installed"
+if is_mac
+then
+  # Install command line tools
+  step "Xcode command line tools"
+  is gcc || xcode-select --install
+  pr "Installed"
 
-# Install homebrew
-step "Homebrew (package manager)"
-is brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-pr "Installed"
+  # Install homebrew
+  step "Homebrew (package manager)"
+  is brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  pr "Installed"
 
-# install homebrew cask
-step "Homebrew cask (app manager)"
-brew tap caskroom/cask
-brew tap caskroom/fonts
-pr "Installed"
+  # install homebrew cask
+  step "Homebrew cask (app manager)"
+  brew tap caskroom/cask
+  brew tap caskroom/fonts
+  pr "Installed"
 
-# Utils
-step "More command line tools"
-install_from_github brew
+  # Install apps
+  step "Apps"
+  install_from_github cask
+
+  # brew cli tools
+  step "Brew command line tools"
+  install_from_github brew
+fi
+
+if is_linux
+then
+  step "APT tools"
+  pr "Adding repositories"
+  add_apt_repositories
+  pr "Installing tools"
+  install_from_github apt
+fi
+
+
+# pip3 cli tools
+step "pip3 command line tools"
 install_from_github pip3
 
 # Npm modules
@@ -95,23 +143,21 @@ step "Npm global modules"
 npm config set prefix $npm_global_dir && \
 install_from_github npm
 
-# Install apps
-step "Apps"
-install_from_github cask
-
 # Dotfiles
 step "Configuration"
 pr "Dotfiles"
 [ -d "$dotfiles_folder" ] || install_dotfiles
 
-pr "Keyboard configuration"
-keyboard_config
+if is_mac
+then
+  pr "Keyboard configuration"
+  keyboard_config
+  pr "Disable Apple persistance"
+  defaults write -g ApplePersistence -bool no
+fi
 
 pr "Git configuration"
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
-
-pr "Disable Apple persistance"
-defaults write -g ApplePersistence -bool no
 
 echo
 echo -e "$green${bold}✓ DONE! You should restart your computer to get everything working as expected.$normal"
