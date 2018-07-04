@@ -159,6 +159,7 @@ fi
 
 pr "Git configuration"
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+git config --global push.default current
 
 echo
 echo -e "$green${bold}✓ DONE! You should restart your computer to get everything working as expected.$normal"
