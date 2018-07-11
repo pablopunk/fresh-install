@@ -1,14 +1,9 @@
 ag
-cmake
-ctags
 fzy
-mas
 neovim
-nmap
 node
 python3
 reattach-to-user-namespace
 tmux
-trash
 wget
 yarn
