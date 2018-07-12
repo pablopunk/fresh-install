@@ -23,7 +23,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/
 
 ## What does this install?
 
-| | Mac | Linux |
+| | Mac | Linux (debian) |
 |-|:---:|:-----:|
 |[homebrew](https://brew.sh)|x||
 |[homebrew cask](https://caskroom.github.io)|x||
