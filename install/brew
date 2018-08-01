@@ -2,6 +2,7 @@ ag
 neovim
 node
 python3
+ranger
 reattach-to-user-namespace
 tmux
 wget
