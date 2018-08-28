@@ -76,7 +76,7 @@ function pip3y {
 }
 
 function apty {
-  pr "Installing tool (from npm) '$1'"
+  pr "Installing tool (from apt) '$1'"
   sudo apt install -y $1 2> /dev/null 1>&2
 }
 
