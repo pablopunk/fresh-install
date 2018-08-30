@@ -34,5 +34,6 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/
 |[some apps](./install/cask)|x||
 |[my dotfiles](https://github.com/pablopunk/dotfiles)|x|x|
 |keyboard config|x||
+|mouse config|x||
 |global git config|x|x|
 |[Disable Apple persistance](https://apple.stackexchange.com/questions/124367/stop-mavericks-from-relaunching-applications)|x||

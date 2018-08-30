@@ -97,6 +97,10 @@ function keyboard_config {
   defaults write NSGlobalDomain InitialKeyRepeat -int 15
 }
 
+function mouse_configuration {
+  defaults write .GlobalPreferences com.apple.mouse.scaling -1
+}
+
 if is_mac
 then
   # Install command line tools
@@ -160,6 +164,8 @@ if is_mac
 then
   pr "Keyboard configuration"
   keyboard_config
+  pr "Mouse configuration"
+  mouse_configuration
   pr "Disable Apple persistance"
   defaults write -g ApplePersistence -bool no
 fi
