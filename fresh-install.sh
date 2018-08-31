@@ -6,6 +6,8 @@ github_raw="https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master
 dotfiles_repo="https://github.com/pablopunk/dotfiles" # The repo should have an `install.sh` script
 dotfiles_folder="$HOME/.dotfiles"
 npm_global_dir="$HOME/.npm-global"
+git_user="pablopunk"
+git_email="pablovarela182@gmail.com"
 
 # Globals
 bold="\x01$(tput bold)\x02"
