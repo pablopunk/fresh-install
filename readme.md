@@ -7,7 +7,11 @@ Don't like to recovering your sysmtem from a backup? With this tool you can inst
 
 ## Requirements
 
-Not much, just a modern version of mac/linux with an internet connection will work.
+Not much, just a modern version of mac/linux with an internet connection will work. If you're using a basic graphical Ubuntu installation you'll need `curl` and `git`:
+
+```bash
+sudo apt install -y git curl
+```
 
 
 ## Use
