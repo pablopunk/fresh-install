@@ -31,6 +31,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/
 |[some cli tools from pip3](./install/pip3)|x|x|
 |[some npm modules](./install/npm)|x|x|
 |[some apps](./install/cask)|x||
+|[snap apps](./install/snap)||x|
 |[my dotfiles](https://github.com/pablopunk/dotfiles)|x|x|
 |keyboard config|x||
 |mouse config|x||

@@ -82,6 +82,11 @@ function apty {
   sudo apt install -y $1 2> /dev/null 1>&2
 }
 
+function snapy {
+  pr "Installing app (from snap) '$1'"
+  sudo snap install $@ 2> /dev/null 1>&2
+}
+
 function install_from_github {
   while read line; do
     ${1}y $line
@@ -138,6 +143,8 @@ then
   sudo apt update
   pr "Installing tools"
   install_from_github apt
+  pr "Installing apps"
+  install_from_github snap
 fi
 
 
