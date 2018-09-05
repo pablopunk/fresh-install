@@ -153,13 +153,6 @@ fi
 step "pip3 command line tools"
 install_from_github pip3
 
-if is_linux
-then
-  step "Installing nodejs from ppa"
-  curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - > /dev/null
-  sudo apt install -y nodejs > /dev/null
-fi
-
 # Npm modules
 step "Npm global modules"
 npm config set prefix $npm_global_dir && \

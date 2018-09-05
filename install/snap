@@ -1,3 +1,7 @@
+corebird
+node --edge --classic
 slack --classic
+spotify
 telegram-desktop
 vlc
+vscode --classic
