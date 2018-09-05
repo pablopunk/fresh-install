@@ -53,7 +53,7 @@ function is_npm_installed {
 
 function add_apt_repositories {
   while read line; do
-    sudo add-apt-repository -y $line
+    sudo add-apt-repository -y $line > /dev/null 2>&1
   done < <(curl -sL "$github_raw/apt-repository")
 }
 
@@ -139,8 +139,9 @@ if is_linux
 then
   step "APT tools"
   pr "Adding repositories"
+  sudo apt-get install -y software-properties-common > /dev/null
   add_apt_repositories
-  sudo apt update
+  sudo apt update > /dev/null
   pr "Installing tools"
   install_from_github apt
   pr "Installing apps"
@@ -155,8 +156,8 @@ install_from_github pip3
 if is_linux
 then
   step "Installing nodejs from ppa"
-  curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-  sudo apt install -y nodejs
+  curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - > /dev/null
+  sudo apt install -y nodejs > /dev/null
 fi
 
 # Npm modules
