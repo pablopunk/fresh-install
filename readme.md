@@ -7,8 +7,7 @@ Don't like to recovering your sysmtem from a backup? With this tool you can inst
 
 ## Requirements
 
-Not much, just a modern version of mac/linux with an internet connection will work.
-
+Not much, just a modern version of mac/linux with an internet connection and `bash` will work.
 
 ## Use
 
@@ -31,7 +30,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/
 |[some cli tools from apt](./install/apt)||x|
 |[some cli tools from pip3](./install/pip3)|x|x|
 |[some npm modules](./install/npm)|x|x|
-|[some apps](./install/cask)|x||
+|[mac](./install/cask)/[linux](./install/snap) apps|x|x|
 |[my dotfiles](https://github.com/pablopunk/dotfiles)|x|x|
 |keyboard config|x||
 |mouse config|x||

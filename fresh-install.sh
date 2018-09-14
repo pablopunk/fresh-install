@@ -6,6 +6,8 @@ github_raw="https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master
 dotfiles_repo="https://github.com/pablopunk/dotfiles" # The repo should have an `install.sh` script
 dotfiles_folder="$HOME/.dotfiles"
 npm_global_dir="$HOME/.npm-global"
+git_user="pablopunk"
+git_email="pablovarela182@gmail.com"
 
 # Globals
 bold="\x01$(tput bold)\x02"
@@ -51,7 +53,7 @@ function is_npm_installed {
 
 function add_apt_repositories {
   while read line; do
-    sudo add-apt-repository -y $line
+    sudo add-apt-repository -y $line > /dev/null 2>&1
   done < <(curl -sL "$github_raw/apt-repository")
 }
 
@@ -78,6 +80,11 @@ function pip3y {
 function apty {
   pr "Installing tool (from apt) '$1'"
   sudo apt install -y $1 2> /dev/null 1>&2
+}
+
+function snapy {
+  pr "Installing app (from snap) '$1'"
+  sudo snap install $@ 2> /dev/null 1>&2
 }
 
 function install_from_github {
@@ -132,23 +139,19 @@ if is_linux
 then
   step "APT tools"
   pr "Adding repositories"
+  sudo apt-get install -y software-properties-common > /dev/null
   add_apt_repositories
-  sudo apt update
+  sudo apt update > /dev/null
   pr "Installing tools"
   install_from_github apt
+  pr "Installing apps"
+  install_from_github snap
 fi
 
 
 # pip3 cli tools
 step "pip3 command line tools"
 install_from_github pip3
-
-if is_linux
-then
-  step "Installing nodejs from ppa"
-  curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-  sudo apt install -y nodejs
-fi
 
 # Npm modules
 step "Npm global modules"
@@ -173,6 +176,9 @@ fi
 pr "Git configuration"
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 git config --global push.default current
+git config --global user.email $git_email
+git config --global user.name $git_user
+git config --global core.editor nvim
 
 echo
 echo -e "$green${bold}✓ DONE! You should restart your computer to get everything working as expected.$normal"
