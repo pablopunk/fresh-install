@@ -10,12 +10,12 @@ git_user="pablopunk"
 git_email="pablovarela182@gmail.com"
 
 # Globals
-bold="\x01$(tput bold)\x02"
-normal="\x01$(tput sgr0)\x02"
-cyan="\x01\033[36m\x02"
-green="\x01\033[32m\x02"
-step_symbol="#"
-pr_symbol="↪"
+bold="\e[1m"
+normal="\e[0m"
+cyan="\e[36m"
+green="\e[32m"
+step_symbol="##"
+pr_symbol="=>"
 
 
 # *nix
