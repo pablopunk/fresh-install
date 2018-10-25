@@ -1,6 +1,6 @@
 corebird
 gitkraken
-node --edge --classic
+node --channel=10/stable --classic
 slack --classic
 spotify
 telegram-desktop
