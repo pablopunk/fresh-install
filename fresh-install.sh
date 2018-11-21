@@ -41,6 +41,7 @@ function pr {
 function step {
   echo
   echo -e "$green$bold$step_symbol $1$normal"
+  echo
 }
 
 function is {
@@ -58,37 +59,32 @@ function add_apt_repositories {
 }
 
 function brewy {
-  pr "Installing tool (from brew) '$1'"
   is $1 || brew install $@ 2> /dev/null
 }
 
 function casky {
-  pr "Installing app '$1'"
   brew cask install $1 2> /dev/null
 }
 
 function npmy {
-  pr "Installing module (from npm) '$1'"
   is_npm_installed $1 || npm i -g $@ > /dev/null
 }
 
 function pip3y {
-  pr "Installing tool (from pip3) '$1'"
   pip3 install $@ 2> /dev/null 1>&2
 }
 
 function apty {
-  pr "Installing tool (from apt) '$1'"
   sudo apt install -y $1 2> /dev/null 1>&2
 }
 
 function snapy {
-  pr "Installing app (from snap) '$1'"
   sudo snap install $@ 2> /dev/null 1>&2
 }
 
 function install_from_github {
   while read line; do
+    pr $line
     ${1}y $line
   done < <(curl -sL "$github_raw/$1")
 }
@@ -143,8 +139,10 @@ then
   add_apt_repositories
   sudo apt update > /dev/null
   pr "Installing tools"
+  echo
   install_from_github apt
-  pr "Installing apps"
+  pr "Installing snaps"
+  echo
   install_from_github snap
 fi
 
