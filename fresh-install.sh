@@ -22,8 +22,10 @@ pr_symbol="=>"
 if [ "$(uname)" = "Linux" ]
 then
   linux=1
+  npm=/snap/bin/npm
 else
   mac=1
+  npm=npm
 fi
 
 function is_mac {
@@ -67,7 +69,7 @@ function casky {
 }
 
 function npmy {
-  is_npm_installed $1 || npm i -g $@ > /dev/null
+  is_npm_installed $1 || $npm i -g $@ > /dev/null
 }
 
 function pip3y {
@@ -153,7 +155,7 @@ install_from_github pip3
 
 # Npm modules
 step "Npm global modules"
-npm config set prefix $npm_global_dir && \
+$npm config set prefix $npm_global_dir && \
 install_from_github npm
 
 # Dotfiles
