@@ -1,4 +1,3 @@
-corebird
 gitkraken
 node --channel=10/stable --classic
 slack --classic
