@@ -17,6 +17,11 @@ green="\e[32m"
 step_symbol="##"
 pr_symbol="=>"
 
+if [ ! "$(whoami)" == "root" ]
+then
+  echo "Rerun as root"
+  exit 1
+fi
 
 # *nix
 if [ "$(uname)" = "Linux" ]
@@ -56,7 +61,7 @@ function is_npm_installed {
 
 function add_apt_repositories {
   while read line; do
-    sudo add-apt-repository -y $line > /dev/null 2>&1
+    add-apt-repository -y $line > /dev/null 2>&1
   done < <(curl -sL "$github_raw/apt-repository")
 }
 
@@ -77,11 +82,11 @@ function pip3y {
 }
 
 function apty {
-  sudo apt install -y $1 2> /dev/null 1>&2
+  apt install -y $1 2> /dev/null 1>&2
 }
 
 function snapy {
-  sudo snap install $@ 2> /dev/null 1>&2
+  snap install $@ 2> /dev/null 1>&2
 }
 
 function install_from_github {
@@ -137,9 +142,9 @@ if is_linux
 then
   step "APT tools"
   pr "Adding repositories"
-  sudo apt-get install -y software-properties-common > /dev/null
+  apt-get install -y software-properties-common > /dev/null
   add_apt_repositories
-  sudo apt update > /dev/null
+  apt update > /dev/null
   pr "Installing tools"
   echo
   install_from_github apt
