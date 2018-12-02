@@ -17,12 +17,6 @@ green="\e[32m"
 step_symbol="##"
 pr_symbol="=>"
 
-if [ ! "$(whoami)" == "root" ]
-then
-  echo "Rerun as root"
-  exit 1
-fi
-
 # *nix
 if [ "$(uname)" = "Linux" ]
 then
@@ -40,6 +34,14 @@ function is_mac {
 function is_linux {
   [ "$linux" = "1" ]
 }
+
+if [ is_linux ] && [ ! "$(whoami)" == "root" ]
+then
+  echo "Rerun as root"
+  exit 1
+fi
+
+user=`who | awk '{print $1}'`
 
 function pr {
   echo -e "$cyan$bold$pr_symbol $1$normal"
@@ -184,6 +186,9 @@ git config --global push.default current
 git config --global user.email $git_email
 git config --global user.name $git_user
 git config --global core.editor nvim
+
+# Fix perms
+is_linux && chown -R $user:$user $HOME
 
 echo
 echo -e "$green${bold}✓ DONE! You should restart your computer to get everything working as expected.$normal"
