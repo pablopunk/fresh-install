@@ -1,9 +1,12 @@
+cpufreq*
 curl
 deja-dup
 fzy
 git
 kdenlive
 neovim
+pm-utils
+powertop
 python-dev
 python-pip
 python3-dev
