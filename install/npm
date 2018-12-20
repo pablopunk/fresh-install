@@ -2,6 +2,7 @@ ava
 bashy
 cost-of-modules
 diff-so-fancy
+eslint
 fx
 koy
 miny
@@ -15,3 +16,4 @@ serve
 standard
 tldr
 trash-cli
+typescript
