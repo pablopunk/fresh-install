@@ -3,6 +3,7 @@ curl
 deja-dup
 fzy
 git
+jq
 kdenlive
 neovim
 pm-utils
