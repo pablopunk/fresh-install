@@ -165,12 +165,14 @@ then
   apt-get install -y software-properties-common > /dev/null
   add_apt_repositories
   apt update > /dev/null
+  echo
   pr "Installing tools"
   echo
   install_from_github apt
-  pr "Installing snaps"
+  step "Installing snaps"
   echo
   install_from_github snap
+  echo
 fi
 
 
