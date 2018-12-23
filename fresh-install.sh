@@ -30,8 +30,8 @@ if [ "$1" = "server" ]; then
   server=1
 fi
 
-function is_server {
-  [ "$server" = "1" ]
+function is_desktop {
+  [ ! "$server" = "1" ]
 }
 
 function is_mac {
@@ -72,7 +72,7 @@ function add_apt_repositories {
   while read line; do
     add-apt-repository -y $line > /dev/null 2>&1
   done < <(curl -sL "$github_raw/server/apt-repository")
-  if [ ! is_server ]; then
+  if is_desktop; then
     while read line; do
       add-apt-repository -y $line > /dev/null 2>&1
     done < <(curl -sL "$github_raw/desktop/apt-repository")
@@ -108,7 +108,7 @@ function install_from_github {
     pr $line
     ${1}y $line
   done < <(curl -sL "$github_raw/server/$1")
-  if [ ! is_server ]; then
+  if is_desktop; then
     while read line; do
       pr $line
       ${1}y $line
