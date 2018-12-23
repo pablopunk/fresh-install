@@ -18,14 +18,21 @@ step_symbol="##"
 pr_symbol="=>"
 
 # *nix
-if [ "$(uname)" = "Linux" ]
-then
+if [ "$(uname)" = "Linux" ]; then
   linux=1
   npm=/snap/bin/npm
 else
   mac=1
   npm=npm
 fi
+
+if [ "$1" = "server" ]; then
+  server=1
+fi
+
+function is_server {
+  [ "$server" = "1" ]
+}
 
 function is_mac {
   [ "$mac" = "1" ]
@@ -64,7 +71,12 @@ function is_npm_installed {
 function add_apt_repositories {
   while read line; do
     add-apt-repository -y $line > /dev/null 2>&1
-  done < <(curl -sL "$github_raw/apt-repository")
+  done < <(curl -sL "$github_raw/server/apt-repository")
+  if [ ! is_server ]; then
+    while read line; do
+      add-apt-repository -y $line > /dev/null 2>&1
+    done < <(curl -sL "$github_raw/desktop/apt-repository")
+  fi
 }
 
 function brewy {
@@ -95,7 +107,13 @@ function install_from_github {
   while read line; do
     pr $line
     ${1}y $line
-  done < <(curl -sL "$github_raw/$1")
+  done < <(curl -sL "$github_raw/server/$1")
+  if [ ! is_server ]; then
+    while read line; do
+      pr $line
+      ${1}y $line
+    done < <(curl -sL "$github_raw/desktop/$1")
+  fi
 }
 
 function install_dotfiles {

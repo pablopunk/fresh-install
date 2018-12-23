@@ -1,0 +1,1 @@
+node --channel=10/stable --classic

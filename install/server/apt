@@ -1,14 +1,8 @@
-cpufreq*
 curl
-deja-dup
-fzy
 gcalcli
 git
 jq
-kdenlive
 neovim
-pm-utils
-powertop
 python-dev
 python-pip
 python3-dev

@@ -16,9 +16,16 @@ To get specific tools/apps, just fork this repo to fit your needs.
 ### Easy install:
 
 ```shell
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/master/fresh-install.sh)"
+curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/master/fresh-install.sh | sudo bash -s
 ```
 
+By default, it will install the tools under `install/server` and `install/desktop`.
+
+To install on a server (no GUI), you can skip graphicals apps and stuff with the server commmand:
+
+```shell
+curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/master/fresh-install.sh | sudo bash -s -- server
+```
 
 ## What does this install?
 
@@ -26,11 +33,11 @@ sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-ins
 |-|:---:|:-----:|
 |[homebrew](https://brew.sh)|x||
 |[homebrew cask](https://caskroom.github.io)|x||
-|[some cli tools from brew](./install/brew)|x||
-|[some cli tools from apt](./install/apt)||x|
-|[some cli tools from pip3](./install/pip3)|x|x|
-|[some npm modules](./install/npm)|x|x|
-|[mac](./install/cask)/[linux](./install/snap) apps|x|x|
+|[some cli tools from brew](./install/server/brew)|x||
+|[some cli tools from apt](./install/server/apt)||x|
+|[some cli tools from pip3](./install/server/pip3)|x|x|
+|[some npm modules](./install/server/npm)|x|x|
+|[mac](./install/server/cask)/[linux](./install/desktop/snap) apps|x|x|
 |[my dotfiles](https://github.com/pablopunk/dotfiles)|x|x|
 |keyboard config|x||
 |mouse config|x||
