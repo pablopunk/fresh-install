@@ -170,9 +170,7 @@ then
   echo
   install_from_github apt
   step "Installing snaps"
-  echo
   install_from_github snap
-  echo
 fi
 
 
