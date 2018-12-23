@@ -9,7 +9,7 @@ Don't like to recovering your sysmtem from a backup? With this tool you can inst
 
 Not much, just a modern version of mac/linux with an internet connection and `bash` will work.
 
-## Use
+## Usage
 
 To get specific tools/apps, just fork this repo to fit your needs.
 
@@ -18,6 +18,8 @@ To get specific tools/apps, just fork this repo to fit your needs.
 ```shell
 curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/master/fresh-install.sh | sudo bash -s
 ```
+
+### Server:
 
 By default, it will install the tools under `install/server` and `install/desktop`.
 
