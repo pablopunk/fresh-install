@@ -140,7 +140,7 @@ then
 
   # Install homebrew
   step "Homebrew (package manager)"
-  is brew || su -c "/usr/bin/ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)'" $SUDO_USER
+  is brew || su $SUDO_USER -c "/usr/bin/ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)'"
   pr "Installed"
 
   # install homebrew cask
