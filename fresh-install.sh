@@ -30,6 +30,10 @@ if [ "$1" = "server" ]; then
   server=1
 fi
 
+function sudoless_brew {
+  su $SUDO_USER -c "brew $@"
+}
+
 function is_desktop {
   [ ! "$server" = "1" ]
 }
@@ -80,11 +84,11 @@ function add_apt_repositories {
 }
 
 function brewy {
-  is $1 || brew install $@ 2> /dev/null
+  is $1 || sudoless_brew install $@ 2> /dev/null
 }
 
 function casky {
-  brew cask install $1 2> /dev/null
+  sudoless_brew cask install $1 2> /dev/null
 }
 
 function npmy {
@@ -145,8 +149,8 @@ then
 
   # install homebrew cask
   step "Homebrew cask (app manager)"
-  brew tap caskroom/cask
-  brew tap caskroom/fonts
+  sudoless_brew tap caskroom/cask
+  sudoless_brew tap caskroom/fonts
   pr "Installed"
 
   # Install apps
