@@ -1,4 +1,5 @@
 ag
+coreutils
 fd
 jq
 neovim
