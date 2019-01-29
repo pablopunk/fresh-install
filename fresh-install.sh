@@ -10,10 +10,10 @@ git_user="pablopunk"
 git_email="pablovarela182@gmail.com"
 
 # Globals
-bold="\e[1m"
-normal="\e[0m"
-cyan="\e[36m"
-green="\e[32m"
+bold="\x01\033[1m\x02"
+normal="\x01\033$(tput sgr0)\x02"
+cyan="\x01\033[36m\x02"
+green="\x01\033[32m\x02"
 step_symbol="##"
 pr_symbol="=>"
 
@@ -31,7 +31,7 @@ if [ "$1" = "server" ]; then
 fi
 
 function sudoless_brew {
-  su $SUDO_USER -c "brew $@"
+  su $SUDO_USER -c "brew $1"
 }
 
 function is_desktop {
@@ -84,11 +84,11 @@ function add_apt_repositories {
 }
 
 function brewy {
-  is $1 || sudoless_brew install $@ 2> /dev/null
+  is $1 || sudoless_brew "install $@ 2> /dev/null"
 }
 
 function casky {
-  sudoless_brew cask install $1 2> /dev/null
+  sudoless_brew "cask install $1 2> /dev/null"
 }
 
 function npmy {
@@ -149,8 +149,8 @@ then
 
   # install homebrew cask
   step "Homebrew cask (app manager)"
-  sudoless_brew tap caskroom/cask
-  sudoless_brew tap caskroom/fonts
+  sudoless_brew "tap caskroom/cask"
+  sudoless_brew "tap caskroom/fonts"
   pr "Installed"
 
   # Install apps
@@ -210,7 +210,8 @@ git config --global user.name $git_user
 git config --global core.editor nvim
 
 # Fix perms
-is_linux && chown -R $user:$user $HOME
+is_mac && chown -R $SUDO_USER:staff $HOME
+is_linux && chown -R $SUDO_USER:$SUDO_USER $HOME
 
 echo
 echo -e "$green${bold}✓ DONE! You should restart your computer to get everything working as expected.$normal"
