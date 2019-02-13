@@ -9,14 +9,6 @@ npm_global_dir="$HOME/.npm-global"
 git_user="pablopunk"
 git_email="pablovarela182@gmail.com"
 
-# Globals
-bold="\x01\033[1m\x02"
-normal="\x01\033$(tput sgr0)\x02"
-cyan="\x01\033[36m\x02"
-green="\x01\033[32m\x02"
-step_symbol="##"
-pr_symbol="=>"
-
 # *nix
 if [ "$(uname)" = "Linux" ]; then
   linux=1
@@ -55,12 +47,12 @@ fi
 user=`who | awk '{print $1}'`
 
 function pr {
-  echo -e "$cyan$bold$pr_symbol $1$normal"
+  echo "$1"
 }
 
 function step {
   echo
-  echo -e "$green$bold$step_symbol $1$normal"
+  echo "[$1]"
   echo
 }
 
@@ -208,4 +200,4 @@ is_mac && chown -R $SUDO_USER:staff $HOME
 is_linux && chown -R $SUDO_USER:$SUDO_USER $HOME
 
 echo
-echo -e "$green${bold}✓ DONE! You should restart your computer to get everything working as expected.$normal"
+echo "✓ DONE! You should restart your computer to get everything working as expected."
