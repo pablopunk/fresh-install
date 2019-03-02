@@ -1,4 +1,5 @@
 ag
+bash-completion
 coreutils
 fd
 jq
