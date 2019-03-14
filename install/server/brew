@@ -1,12 +1,16 @@
 ag
-bash-completion
+bash-completion@2
+brew-cask-completion
 coreutils
 fd
 jq
 neovim
 node
+pip-completion
 python3
 ranger
 tmux
+tmuxinator-completion
 wget
 yarn
+yarn-completion
