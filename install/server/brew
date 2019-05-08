@@ -2,7 +2,6 @@ ag
 bash-completion@2
 brew-cask-completion
 coreutils
-fd
 jq
 neovim
 node
