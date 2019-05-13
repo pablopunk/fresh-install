@@ -63,7 +63,7 @@ function add_apt_repositories {
 }
 
 function brewy {
-  is $1 || sudoless_brew "install $@ 2> /dev/null"
+  ls /usr/local/Cellar/$1 > /dev/null || sudoless_brew "install $@ 2> /dev/null"
 }
 
 function casky {
@@ -177,6 +177,7 @@ git config --global user.name $git_user
 git config --global core.editor nvim
 
 # Fix perms
+pr "Fixing permissions"
 is_mac && chown -R $SUDO_USER:staff $HOME
 is_linux && chown -R $SUDO_USER:$SUDO_USER $HOME
 
