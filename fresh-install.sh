@@ -19,7 +19,7 @@ else
 fi
 
 function sudoless_brew {
-  su $SUDO_USER -c "brew $1"
+  su $SUDO_USER -c "brew $@"
 }
 
 function is_mac {
@@ -30,7 +30,7 @@ function is_linux {
   [ "$linux" = "1" ]
 }
 
-if [ is_linux ] && [ ! "$(whoami)" == "root" ]
+if [ ! "$(whoami)" == "root" ]
 then
   echo "Rerun as root"
   exit 1
@@ -39,7 +39,7 @@ fi
 user=`who | awk '{print $1}'`
 
 function pr {
-  echo "$1"
+  echo "  $1"
 }
 
 function step {
@@ -67,7 +67,7 @@ function brewy {
 }
 
 function casky {
-  sudoless_brew "cask install $1 2> /dev/null"
+  ls /usr/local/Caskroom/$1 > /dev/null || sudoless_brew "cask install $1 2> /dev/null"
 }
 
 function npmy {
