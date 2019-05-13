@@ -6,7 +6,7 @@ jq
 neovim
 node
 pip-completion
-python3
+pyenv
 ranger
 tmux
 tmuxinator-completion

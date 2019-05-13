@@ -18,16 +18,8 @@ else
   npm=npm
 fi
 
-if [ "$1" = "server" ]; then
-  server=1
-fi
-
 function sudoless_brew {
   su $SUDO_USER -c "brew $1"
-}
-
-function is_desktop {
-  [ ! "$server" = "1" ]
 }
 
 function is_mac {
@@ -67,12 +59,7 @@ function is_npm_installed {
 function add_apt_repositories {
   while read line; do
     add-apt-repository -y $line > /dev/null 2>&1
-  done < <(curl -sL "$github_raw/server/apt-repository")
-  if is_desktop; then
-    while read line; do
-      add-apt-repository -y $line > /dev/null 2>&1
-    done < <(curl -sL "$github_raw/desktop/apt-repository")
-  fi
+  done < <(curl -sL "$github_raw/apt-repository")
 }
 
 function brewy {
@@ -103,13 +90,7 @@ function install_from_github {
   while read line; do
     pr $line
     ${1}y $line
-  done < <(curl -sL "$github_raw/server/$1")
-  if is_desktop; then
-    while read line; do
-      pr $line
-      ${1}y $line
-    done < <(curl -sL "$github_raw/desktop/$1")
-  fi
+  done < <(curl -sL "$github_raw/$1")
 }
 
 function install_dotfiles {
@@ -127,7 +108,7 @@ if is_mac
 then
   # Install command line tools
   step "Xcode command line tools"
-  is gcc || xcode-select --install
+  is gcc || ( echo "Install xcode cli tools with 'xcode-select --install'" && exit )
   pr "Installed"
 
   # Install homebrew
