@@ -63,11 +63,11 @@ function add_apt_repositories {
 }
 
 function brewy {
-  ls /usr/local/Cellar/$1 > /dev/null || sudoless_brew "install $@ 2> /dev/null"
+  ls /usr/local/Cellar/$1 > /dev/null 2>&1 || sudoless_brew "install $@ 2> /dev/null"
 }
 
 function casky {
-  ls /usr/local/Caskroom/$1 > /dev/null || sudoless_brew "cask install $1 2> /dev/null"
+  ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || sudoless_brew "cask install $1 2> /dev/null"
 }
 
 function npmy {
