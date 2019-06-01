@@ -2,6 +2,8 @@ ava
 bashy
 diff-so-fancy
 eslint
+eslint
+eslint-config-standard
 fd-find
 fx
 miny
