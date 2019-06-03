@@ -86,6 +86,10 @@ function snapy {
   snap install $@ 2> /dev/null 1>&2
 }
 
+function masy {
+  mas lucky $1 2> /dev/null 1>&2
+}
+
 function install_from_github {
   while read line; do
     pr $line
@@ -127,6 +131,7 @@ then
   # Install apps
   step "Apps"
   install_from_github cask
+  install_from_github mas
 
   # brew cli tools
   step "Brew command line tools"
