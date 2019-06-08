@@ -186,7 +186,7 @@ git config --global core.editor nvim
 # Fix perms
 pr "Fixing permissions"
 is_mac && chown -R $SUDO_USER:staff $dotfiles_folder $npm_global_dir
-is_linux && chown -R $dotfiles_folder $npm_global_dir
+is_linux && chown -R $SUDO_USER:$SUDO_USER $dotfiles_folder $npm_global_dir
 
 echo
 echo "✓ DONE! You should restart your computer to get everything working as expected."
