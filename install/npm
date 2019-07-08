@@ -1,4 +1,3 @@
-ava
 bashy
 diff-so-fancy
 eslint
@@ -9,16 +8,13 @@ eslint-plugin-promise
 eslint-plugin-react
 eslint-plugin-standard
 fd-find
-fx
 miny
 neovim
 now
-npx
 nuup
 odf
 prettier
 serve
-standard
 taski
 tldr
 trash-cli

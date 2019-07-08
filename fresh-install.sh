@@ -112,7 +112,7 @@ if is_mac
 then
   # Install command line tools
   step "Xcode command line tools"
-  is gcc || ( echo "Install xcode cli tools with 'xcode-select --install'" && exit )
+  xcode-select -p 1>/dev/null || ( echo "Install xcode cli tools with 'xcode-select --install'" && exit )
   pr "Installed"
 
   # Install homebrew

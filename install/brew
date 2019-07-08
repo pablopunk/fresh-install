@@ -1,5 +1,5 @@
 ag
-bash-completion@2
+bash-completion
 brew-cask-completion
 coreutils
 jq
