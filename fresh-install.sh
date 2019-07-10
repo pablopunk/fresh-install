@@ -123,7 +123,7 @@ then
   # install homebrew cask
   step "Homebrew cask (app manager)"
   if ! brew info cask &>/dev/null; then
-    sudoless_brew "tap caskroom/fonts"
+    sudoless_brew "tap homebrew/cask-fonts"
   fi
   pr "Installed"
 
