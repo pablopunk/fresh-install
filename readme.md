@@ -33,4 +33,5 @@ curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/master/fres
 |[my dotfiles](https://github.com/pablopunk/dotfiles)|x|x|
 |keyboard config|x||
 |global git config|x|x|
+|[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)|x|x|
 |[Disable Apple persistance](https://apple.stackexchange.com/questions/124367/stop-mavericks-from-relaunching-applications)|x||
