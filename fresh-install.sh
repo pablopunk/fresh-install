@@ -112,7 +112,7 @@ if is_mac
 then
   # Install command line tools
   step "Xcode command line tools"
-  xcode-select -p 1>/dev/null || ( echo "Install xcode cli tools with 'xcode-select --install'" && exit )
+  xcode-select -p 1>/dev/null || (echo "Install xcode cli tools with 'xcode-select --install'" && exit)
   pr "Installed"
 
   # Install homebrew
@@ -181,6 +181,9 @@ git config --global push.default current
 git config --global user.email $git_email
 git config --global user.name $git_user
 git config --global core.editor nvim
+
+pr "Oh my zsh!"
+su $SUDO_USER -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
 
 # Fix perms
 pr "Fixing permissions"
