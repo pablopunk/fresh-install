@@ -9,6 +9,7 @@ node
 pip-completion
 pyenv
 ranger
+starship
 tmux
 tmuxinator-completion
 wget
