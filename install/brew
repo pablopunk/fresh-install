@@ -3,6 +3,7 @@ bash-completion
 brew-cask-completion
 coreutils
 jq
+lolcat
 mas
 neovim
 node
