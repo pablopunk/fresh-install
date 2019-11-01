@@ -16,7 +16,7 @@ To get specific tools/apps, just fork this repo to fit your needs.
 ### Easy install:
 
 ```shell
-curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/master/fresh-install.sh | sudo bash -s
+curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/master/fresh-install.sh | bash -s
 ```
 
 ## What does this install?
