@@ -1,194 +1,166 @@
-#!/bin/bash
-# Copyright Pablo Varela 2018
+# VARIABLES
 
-# Customize!
-github_raw="https://raw.githubusercontent.com/pablopunk/mac-fresh-install/master/install"
-dotfiles_repo="https://github.com/pablopunk/dotfiles" # The repo should have an `install.sh` script
-dotfiles_folder="$HOME/.dotfiles"
 npm_global_dir="$HOME/.npm-global"
 git_user="pablopunk"
 git_email="pablovarela182@gmail.com"
+dotfiles_folder="$HOME/.dotfiles"
+dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an `install.sh` script
 
-# *nix
-if [ "$(uname)" = "Linux" ]; then
-  linux=1
-  npm=/snap/bin/npm
-else
-  mac=1
-  npm=npm
-fi
+# FUNCTIONS
 
-function sudoless_brew {
-  su $SUDO_USER -c "brew $@"
-}
-
-function is_mac {
-  [ "$mac" = "1" ]
-}
-
-function is_linux {
-  [ "$linux" = "1" ]
-}
-
-if [ ! "$(whoami)" == "root" ]
-then
-  echo "Rerun as root"
-  exit 1
-fi
-
-user=`who | awk '{print $1}'`
-
-function pr {
-  echo "  $1"
-}
-
-function step {
-  echo
-  echo "[$1]"
-  echo
-}
-
-function is {
-  hash $1 2>/dev/null && true || false
-}
-
-function is_npm_installed {
-  ls "$npm_global_dir/lib/node_modules/$1" > /dev/null 2>&1
-}
-
-function add_apt_repositories {
-  while read line; do
-    add-apt-repository -y $line > /dev/null 2>&1
-  done < <(curl -sL "$github_raw/apt-repository")
-}
-
-function brewy {
-  ls /usr/local/Cellar/$1 > /dev/null 2>&1 || sudoless_brew "install $@ 2> /dev/null"
-}
-
-function casky {
+function install_cask {
   ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || sudoless_brew "cask install $1 2> /dev/null"
 }
 
-function npmy {
-  is_npm_installed $1 || $npm i -g $@ > /dev/null
+function install_npm {
+  ls "$npm_global_dir/lib/node_modules/$1" > /dev/null 2>&1 || npm i -g $@
 }
 
-function pip3y {
-  pip3 install $@ 2> /dev/null 1>&2
+function install_brew {
+  ls /usr/local/Cellar/$1 > /dev/null 2>&1 || brew install $@ 2> /dev/null
 }
 
-function apty {
-  apt install -y $1 2> /dev/null 1>&2
+function install_mas {
+  if [ -z "$(mas list | cut -d' ' -f2 | grep $1)" ]
+  then
+    mas lucky $1
+  fi
 }
 
-function snapy {
-  snap install $@ 2> /dev/null 1>&2
-}
+# SCRIPT
 
-function masy {
-  mas lucky $1 2> /dev/null 1>&2
-}
+echo
 
-function install_from_github {
-  while read line; do
-    pr $line
-    ${1}y $line
-  done < <(curl -sL "$github_raw/$1")
-}
+if [ "$(uname)" = "Darwin" ]
+then
+  echo "* macOS *"
+  echo
+  xcode-select -p 1>/dev/null || ( echo "Install xcode tools with `xcode-select --install`" && exit )
+  hash brew 2>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-function install_dotfiles {
-  git clone $dotfiles_repo $dotfiles_folder
-  bash ${dotfiles_folder}/install.sh
-}
+  echo "Cask apps"
+  install_cask appcleaner
+  install_cask clipy
+  install_cask font-hack
+  install_cask google-backup-and-sync
+  install_cask google-chrome
+  install_cask iina
+  install_cask istat-menus
+  install_cask slack
+  install_cask spotify
+  install_cask telegram-desktop
+  install_cask transmission
+  install_cask whatsapp
 
-function keyboard_config {
+  echo "Homebrew tools"
+  install_brew ag
+  install_brew bash-completion
+  install_brew brew-cask-completion
+  install_brew coreutils
+  install_brew lolcat
+  install_brew mas
+  install_brew neovim
+  install_brew node@10
+  install_brew pyenv
+  install_brew starship
+  install_brew tmux
+  install_brew wget
+  install_brew yarn
+  install_brew yarn-completion
+  install_brew pip-completion
+
+  echo "Mac App Store apps"
+  install_mas Dato
+  install_mas HyperDock
+  install_mas Lungo
+  install_mas Newton
+
+  echo "Apple configs"
   defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false && \
   defaults write NSGlobalDomain KeyRepeat -int 1 && \
   defaults write NSGlobalDomain InitialKeyRepeat -int 15
+  defaults write -g ApplePersistence -bool no
+
+elif [ "$(uname)" = "Linux" ]
+then
+  echo "* linux *"
+
+  echo "APT tools"
+  sudo apt update
+  sudo apt install -y curl
+  sudo apt install -y git
+  sudo apt install -y neovim
+  sudo apt install -y python-dev
+  sudo apt install -y python-pip
+  sudo apt install -y python3-dev
+  sudo apt install -y python3-pip
+  sudo apt install -y python3-venv
+  sudo apt install -y silversearcher-ag
+  sudo apt install -y snapd
+  sudo apt install -y software-properties-common
+  sudo apt install -y tmux
+  sudo apt install -y vim
+  sudo apt install -y zsh
+
+  echo "Snapcraft tools"
+  sudo snap install asciinema  --classic
+  sudo snap install node --channel=10/stable --classic
+fi
+
+npm config set prefix $HOME/.npm-global
+
+echo "NPM tools"
+install_npm bashy
+install_npm diff-so-fancy
+install_npm eslint
+install_npm eslint-config-standard
+install_npm eslint-plugin-import
+install_npm eslint-plugin-node
+install_npm eslint-plugin-promise
+install_npm eslint-plugin-react
+install_npm eslint-plugin-standard
+install_npm fd-find
+install_npm miny
+install_npm neovim
+install_npm now
+install_npm nuup
+install_npm odf
+install_npm prettier
+install_npm serve
+install_npm taski
+install_npm tldr
+install_npm trash-cli
+install_npm typescript
+
+function install_pip3 {
+  pip3 install $@ > /dev/null 2>&1
 }
 
-if is_mac
+echo "pip3 tools"
+install_pip3 grip
+install_pip3 neovim --user
+
+echo "oh-my-zsh"
+if [ ! -d $HOME/.oh-my-zsh ]
 then
-  # Install command line tools
-  step "Xcode command line tools"
-  xcode-select -p 1>/dev/null || (echo "Install xcode cli tools with 'xcode-select --install'" && exit)
-  pr "Installed"
-
-  # Install homebrew
-  step "Homebrew (package manager)"
-  is brew || su $SUDO_USER -c '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
-  pr "Installed"
-
-  # install homebrew cask
-  step "Homebrew cask (app manager)"
-  if ! brew info cask &>/dev/null; then
-    sudoless_brew "tap homebrew/cask-fonts"
-  fi
-  pr "Installed"
-
-  # Install apps
-  step "Apps"
-  install_from_github cask
-  install_from_github mas
-
-  # brew cli tools
-  step "Brew command line tools"
-  install_from_github brew
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
-if is_linux
+echo "rust & cargo"
+hash cargo 2>/dev/null || curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
+
+echo "Dotfiles"
+if [ ! -d $dotfiles_folder ]
 then
-  step "APT tools"
-  pr "Adding repositories"
-  apt-get install -y software-properties-common > /dev/null
-  add_apt_repositories
-  apt update > /dev/null
-  echo
-  pr "Installing tools"
-  echo
-  install_from_github apt
-  step "Installing snaps"
-  install_from_github snap
+  git clone $dotfiles_repo $dotfiles_folder
+  bash $dotfiles_folder/install.sh
 fi
 
-
-# pip3 cli tools
-step "pip3 command line tools"
-install_from_github pip3
-
-# Npm modules
-step "Npm global modules"
-$npm config set prefix $npm_global_dir && \
-install_from_github npm
-
-# Dotfiles
-step "Configuration"
-pr "Dotfiles"
-[ -d "$dotfiles_folder" ] || install_dotfiles
-
-if is_mac
-then
-  pr "Keyboard configuration"
-  keyboard_config
-  pr "Disable Apple persistance"
-  defaults write -g ApplePersistence -bool no
-fi
-
-pr "Git configuration"
+echo "Git Configs"
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 git config --global push.default current
 git config --global user.email $git_email
 git config --global user.name $git_user
 git config --global core.editor nvim
 
-pr "Oh my zsh!"
-su $SUDO_USER -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
-
-# Fix perms
-pr "Fixing permissions"
-is_mac && chown -R $SUDO_USER:staff $dotfiles_folder $npm_global_dir ~/.*
-is_linux && chown -R $SUDO_USER:$SUDO_USER $HOME
-
 echo
-echo "✓ DONE! You should restart your computer to get everything working as expected."

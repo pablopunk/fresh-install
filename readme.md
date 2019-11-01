@@ -21,17 +21,4 @@ curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/master/fres
 
 ## What does this install?
 
-| | Mac | Linux (debian) |
-|-|:---:|:-----:|
-|[homebrew](https://brew.sh)|x||
-|[homebrew cask](https://caskroom.github.io)|x||
-|[some cli tools from brew](./install/brew)|x||
-|[some cli tools from apt](./install/apt)||x|
-|[some cli tools from pip3](./install/pip3)|x|x|
-|[some npm modules](./install/npm)|x|x|
-|[mac apps](./install/cask)|x||
-|[my dotfiles](https://github.com/pablopunk/dotfiles)|x|x|
-|keyboard config|x||
-|global git config|x|x|
-|[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)|x|x|
-|[Disable Apple persistance](https://apple.stackexchange.com/questions/124367/stop-mavericks-from-relaunching-applications)|x||
+Check the [`fresh-install.sh`](./fresh-install.sh) file to see all the tools that are being installed. On the top, you can modify the variables to fit your needs.
