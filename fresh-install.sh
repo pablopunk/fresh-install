@@ -9,7 +9,12 @@ dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an `ins
 # FUNCTIONS
 
 function install_cask {
-  ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || sudoless_brew "cask install $1 2> /dev/null"
+  if [ "$(uname)" = "Darwin" ]
+    ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || brew cask install $@ 2> /dev/null
+  then
+  elif [ "$(uname)" = "Linux" ]
+    ls /home/linuxbrew/.linuxbrew/Caskroom//$1 > /dev/null 2>&1 || brew cask install $@ 2> /dev/null
+  fi
 }
 
 function install_npm {
@@ -17,7 +22,12 @@ function install_npm {
 }
 
 function install_brew {
-  ls /usr/local/Cellar/$1 > /dev/null 2>&1 || brew install $@ 2> /dev/null
+  if [ "$(uname)" = "Darwin" ]
+    ls /usr/local/Cellar/$1 > /dev/null 2>&1 || brew install $@ 2> /dev/null
+  then
+  elif [ "$(uname)" = "Linux" ]
+    ls /home/linuxbrew/.linuxbrew/Cellar/$1 > /dev/null 2>&1 || brew install $@ 2> /dev/null
+  fi
 }
 
 function install_mas {
@@ -58,6 +68,7 @@ then
 
   echo "Homebrew tools"
   install_brew ag
+  install_brew asciinema
   install_brew bash-completion
   install_brew brew-cask-completion
   install_brew coreutils
@@ -68,6 +79,7 @@ then
   install_brew pyenv
   install_brew starship
   install_brew tmux
+  install_brew tmuxinator
   install_brew wget
   install_brew yarn
   install_brew yarn-completion
@@ -91,24 +103,26 @@ then
 
   echo "APT tools"
   sudo apt update > /dev/null
+  install_apt build-essential
   install_apt curl
   install_apt git
-  install_apt neovim
   install_apt python-dev
   install_apt python-pip
   install_apt python3-dev
   install_apt python3-pip
   install_apt python3-venv
   install_apt silversearcher-ag
-  install_apt snapd
   install_apt software-properties-common
   install_apt tmux
   install_apt vim
   install_apt zsh
 
-  echo "Snapcraft tools"
-  sudo snap install asciinema  --classic
-  sudo snap install node --channel=10/stable --classic
+  echo "Homebrew tools"
+  hash brew 2>/dev/null || sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+  install_brew asciinema
+  install_brew node@10
+  install_brew neovim
+  install_brew tmuxinator
 fi
 
 npm config set prefix $HOME/.npm-global
