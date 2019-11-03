@@ -13,7 +13,7 @@ function install_cask {
 }
 
 function install_npm {
-  ls "$npm_global_dir/lib/node_modules/$1" > /dev/null 2>&1 || npm i -g $@
+  ls "$npm_global_dir/lib/node_modules/$1" > /dev/null 2>&1 || npm i -g $@ > /dev/null
 }
 
 function install_brew {
@@ -25,6 +25,10 @@ function install_mas {
   then
     mas lucky $1
   fi
+}
+
+function install_apt {
+  sudo apt install $@ -y
 }
 
 # SCRIPT
@@ -86,21 +90,21 @@ then
   echo "* linux *"
 
   echo "APT tools"
-  sudo apt update
-  sudo apt install -y curl
-  sudo apt install -y git
-  sudo apt install -y neovim
-  sudo apt install -y python-dev
-  sudo apt install -y python-pip
-  sudo apt install -y python3-dev
-  sudo apt install -y python3-pip
-  sudo apt install -y python3-venv
-  sudo apt install -y silversearcher-ag
-  sudo apt install -y snapd
-  sudo apt install -y software-properties-common
-  sudo apt install -y tmux
-  sudo apt install -y vim
-  sudo apt install -y zsh
+  sudo apt update > /dev/null
+  install_apt curl
+  install_apt git
+  install_apt neovim
+  install_apt python-dev
+  install_apt python-pip
+  install_apt python3-dev
+  install_apt python3-pip
+  install_apt python3-venv
+  install_apt silversearcher-ag
+  install_apt snapd
+  install_apt software-properties-common
+  install_apt tmux
+  install_apt vim
+  install_apt zsh
 
   echo "Snapcraft tools"
   sudo snap install asciinema  --classic
