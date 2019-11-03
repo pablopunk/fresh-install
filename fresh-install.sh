@@ -28,7 +28,7 @@ function install_mas {
 }
 
 function install_apt {
-  sudo apt install $@ -y
+  sudo apt install $@ -y > /dev/null
 }
 
 # SCRIPT
