@@ -10,9 +10,9 @@ dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an `ins
 
 function install_cask {
   if [ "$(uname)" = "Darwin" ]
-    ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || brew cask install $@ 2> /dev/null
   then
-  elif [ "$(uname)" = "Linux" ]
+    ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || brew cask install $@ 2> /dev/null
+  else
     ls /home/linuxbrew/.linuxbrew/Caskroom//$1 > /dev/null 2>&1 || brew cask install $@ 2> /dev/null
   fi
 }
@@ -23,9 +23,9 @@ function install_npm {
 
 function install_brew {
   if [ "$(uname)" = "Darwin" ]
-    ls /usr/local/Cellar/$1 > /dev/null 2>&1 || brew install $@ 2> /dev/null
   then
-  elif [ "$(uname)" = "Linux" ]
+    ls /usr/local/Cellar/$1 > /dev/null 2>&1 || brew install $@ 2> /dev/null
+  else
     ls /home/linuxbrew/.linuxbrew/Cellar/$1 > /dev/null 2>&1 || brew install $@ 2> /dev/null
   fi
 }
@@ -96,7 +96,6 @@ then
   defaults write NSGlobalDomain KeyRepeat -int 1 && \
   defaults write NSGlobalDomain InitialKeyRepeat -int 15
   defaults write -g ApplePersistence -bool no
-
 elif [ "$(uname)" = "Linux" ]
 then
   echo "* linux *"
