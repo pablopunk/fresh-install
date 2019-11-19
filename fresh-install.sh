@@ -58,7 +58,6 @@ then
   install_cask appcleaner
   install_cask clipy
   install_cask font-hack
-  install_cask google-backup-and-sync
   install_cask google-chrome
   install_cask iina
   install_cask istat-menus
