@@ -61,6 +61,7 @@ then
   install_cask google-chrome
   install_cask iina
   install_cask istat-menus
+  install_cask karabiner-elements
   install_cask slack
   install_cask spotify
   install_cask telegram-desktop
