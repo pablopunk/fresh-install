@@ -88,7 +88,7 @@ then
   install_brew pip-completion
 
   echo "Mac App Store apps"
-  install_mas Dato
+  mas install 1470584107 # workaround to install Dato
   install_mas HyperDock
   install_mas Lungo
   install_mas Newton
