@@ -1,8 +1,6 @@
 # VARIABLES
 
 npm_global_dir="$HOME/.npm-global"
-git_user="pablopunk"
-git_email="pablovarela182@gmail.com"
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an `install.sh` script
 
@@ -175,12 +173,5 @@ then
   git clone $dotfiles_repo $dotfiles_folder
   bash $dotfiles_folder/install.sh
 fi
-
-echo "Git Configs"
-git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
-git config --global push.default current
-git config --global user.email $git_email
-git config --global user.name $git_user
-git config --global core.editor nvim
 
 echo
