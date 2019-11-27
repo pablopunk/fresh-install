@@ -55,6 +55,7 @@ then
   echo "Cask apps"
   install_cask appcleaner
   install_cask clipy
+  install_cask font-cascadia
   install_cask font-hack
   install_cask google-chrome
   install_cask iina
