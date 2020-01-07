@@ -159,6 +159,7 @@ function install_pip3 {
 echo "pip3 tools"
 install_pip3 grip
 install_pip3 neovim --user
+install_pip3 --upgrade pip setuptools
 
 echo "oh-my-zsh"
 if [ ! -d $HOME/.oh-my-zsh ]
