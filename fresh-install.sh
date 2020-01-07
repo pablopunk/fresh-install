@@ -60,6 +60,7 @@ then
   install_cask google-chrome
   install_cask iina
   install_cask istat-menus
+  install_cask iterm2
   install_cask karabiner-elements
   install_cask nordvpn
   install_cask slack
