@@ -1,23 +1,22 @@
 # VARIABLES
 
-npm_global_dir="$HOME/.npm-global"
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an `install.sh` script
 
 # FUNCTIONS
 
 function install_cask {
-  if [ "$(uname)" = "Darwin" ]
-  then
-    ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || brew cask install $@ 2> /dev/null
-  elif [ "$(uname)" = "Linux" ]
-  then
-    ls /home/linuxbrew/.linuxbrew/Caskroom//$1 > /dev/null 2>&1 || brew cask install $@ 2> /dev/null
-  fi
+if [ "$(uname)" = "Darwin" ]
+then
+  ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || brew cask install $@ 2> /dev/null
+elif [ "$(uname)" = "Linux" ]
+then
+  ls /home/linuxbrew/.linuxbrew/Caskroom//$1 > /dev/null 2>&1 || brew cask install $@ 2> /dev/null
+fi
 }
 
 function install_npm {
-  ls "$npm_global_dir/lib/node_modules/$1" > /dev/null 2>&1 || npm i -g $@ > /dev/null
+  npm i -g $@  > /dev/null 2>&1
 }
 
 function install_brew {
@@ -78,7 +77,7 @@ then
   install_brew lolcat
   install_brew mas
   install_brew neovim
-  install_brew node@10
+  install_brew nvm
   install_brew pyenv
   install_brew starship
   install_brew tmux
@@ -123,35 +122,40 @@ then
   echo "Homebrew tools"
   hash brew 2>/dev/null || sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
   install_brew asciinema
-  install_brew node@10
   install_brew neovim
   install_brew tmuxinator
+  install_brew nvm
 fi
 
-npm config set prefix $HOME/.npm-global
+echo "Configure NVM"
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+nvm install 10.18.1 > /dev/null 2>&1
+nvm use 10.18.1 > /dev/null 2>&1
+nvm alias default 10.18.1 > /dev/null 2>&1
 
 echo "NPM tools"
-install_npm bashy
-install_npm diff-so-fancy
-install_npm eslint
-install_npm eslint-config-standard
-install_npm eslint-plugin-import
-install_npm eslint-plugin-node
-install_npm eslint-plugin-promise
-install_npm eslint-plugin-react
-install_npm eslint-plugin-standard
-install_npm fd-find
-install_npm miny
-install_npm neovim
-install_npm now
-install_npm nuup
-install_npm odf
-install_npm prettier
-install_npm serve
-install_npm taski
-install_npm tldr
-install_npm trash-cli
-install_npm typescript
+install_npm bashy \
+            diff-so-fancy \
+            eslint \
+            eslint-config-standard \
+            eslint-plugin-import \
+            eslint-plugin-node \
+            eslint-plugin-promise \
+            eslint-plugin-react \
+            eslint-plugin-standard \
+            fd-find \
+            miny \
+            neovim \
+            now \
+            nuup \
+            odf \
+            prettier \
+            serve \
+            taski \
+            tldr \
+            trash-cli \
+            typescript
 
 function install_pip3 {
   pip3 install $@ > /dev/null 2>&1
