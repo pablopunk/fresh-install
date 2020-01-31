@@ -16,7 +16,8 @@ fi
 }
 
 function install_npm {
-  npm i -g $@  > /dev/null 2>&1
+  [[ -d "$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/lib/node_modules/$1" ]] || \
+    npm i -g $@  > /dev/null 2>&1
 }
 
 function install_brew {
@@ -135,27 +136,27 @@ nvm use 10.18.1 > /dev/null 2>&1
 nvm alias default 10.18.1 > /dev/null 2>&1
 
 echo "NPM tools"
-install_npm bashy \
-            diff-so-fancy \
-            eslint \
-            eslint-config-standard \
-            eslint-plugin-import \
-            eslint-plugin-node \
-            eslint-plugin-promise \
-            eslint-plugin-react \
-            eslint-plugin-standard \
-            fd-find \
-            miny \
-            neovim \
-            now \
-            nuup \
-            odf \
-            prettier \
-            serve \
-            taski \
-            tldr \
-            trash-cli \
-            typescript
+install_npm bashy
+install_npm diff-so-fancy
+install_npm eslint
+install_npm eslint-config-standard
+install_npm eslint-plugin-import
+install_npm eslint-plugin-node
+install_npm eslint-plugin-promise
+install_npm eslint-plugin-react
+install_npm eslint-plugin-standard
+install_npm fd-find
+install_npm miny
+install_npm neovim
+install_npm now
+install_npm nuup
+install_npm odf
+install_npm prettier
+install_npm serve
+install_npm taski
+install_npm tldr
+install_npm trash-cli
+install_npm typescript
 
 function install_pip3 {
   pip3 install $@ > /dev/null 2>&1
