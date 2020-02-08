@@ -130,7 +130,12 @@ fi
 
 echo "Configure NVM"
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+mkdir -p $NVM_DIR
+if [ "$(uname)" = "Darwin" ]; then
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+else
+  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && . "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
+fi
 nvm install 10.18.1 > /dev/null 2>&1
 nvm use 10.18.1 > /dev/null 2>&1
 nvm alias default 10.18.1 > /dev/null 2>&1
