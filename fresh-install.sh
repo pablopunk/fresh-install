@@ -95,6 +95,7 @@ then
   install_mas Newton
 
   echo "Apple configs"
+  defaults write com.apple.dock autohide-delay -float 0
   defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false && \
   defaults write NSGlobalDomain KeyRepeat -int 1 && \
   defaults write NSGlobalDomain InitialKeyRepeat -int 15
