@@ -123,10 +123,13 @@ then
 
   echo "Homebrew tools"
   hash brew 2>/dev/null || sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+
+  export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
   install_brew asciinema
   install_brew neovim
-  install_brew tmuxinator
   install_brew nvm
+  install_brew starship
+  install_brew tmuxinator
 fi
 
 echo "Configure NVM"
