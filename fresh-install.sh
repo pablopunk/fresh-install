@@ -79,14 +79,15 @@ then
   install_brew mas
   install_brew neovim
   install_brew nvm
+  install_brew pip-completion
   install_brew pyenv
   install_brew starship
   install_brew tmux
   install_brew tmuxinator
+  install_brew watchman
   install_brew wget
   install_brew yarn
   install_brew yarn-completion
-  install_brew pip-completion
 
   echo "Mac App Store apps"
   mas install 1470584107 # workaround to install Dato
@@ -130,6 +131,7 @@ then
   install_brew nvm
   install_brew starship
   install_brew tmuxinator
+  install_brew watchman
 fi
 
 echo "Configure NVM"
