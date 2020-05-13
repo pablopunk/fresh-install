@@ -80,7 +80,7 @@ then
   install_brew neovim
   install_brew nvm
   install_brew pip-completion
-  install_brew pyenv
+  install_brew python
   install_brew starship
   install_brew tmux
   install_brew tmuxinator
@@ -111,11 +111,6 @@ then
   install_apt build-essential
   install_apt curl
   install_apt git
-  install_apt python-dev
-  install_apt python-pip
-  install_apt python3-dev
-  install_apt python3-pip
-  install_apt python3-venv
   install_apt silversearcher-ag
   install_apt software-properties-common
   install_apt tmux
@@ -129,6 +124,7 @@ then
   install_brew asciinema
   install_brew neovim
   install_brew nvm
+  install_brew python
   install_brew starship
   install_brew tmuxinator
   install_brew watchman
