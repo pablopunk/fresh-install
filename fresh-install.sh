@@ -155,7 +155,6 @@ install_npm eslint-plugin-standard
 install_npm fd-find
 install_npm miny
 install_npm neovim
-install_npm now
 install_npm nuup
 install_npm odf
 install_npm prettier
@@ -164,6 +163,7 @@ install_npm taski
 install_npm tldr
 install_npm trash-cli
 install_npm typescript
+install_npm vercel
 
 function install_pip3 {
   pip3 install $@ > /dev/null 2>&1
