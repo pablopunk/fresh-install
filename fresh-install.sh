@@ -81,6 +81,7 @@ then
   install_brew nvm
   install_brew pip-completion
   install_brew python
+  install_brew ripgrep
   install_brew starship
   install_brew tmux
   install_brew tmuxinator
