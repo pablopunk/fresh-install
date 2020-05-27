@@ -139,9 +139,9 @@ if [ "$(uname)" = "Darwin" ]; then
 else
   [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && . "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
 fi
-nvm install 10.18.1 > /dev/null 2>&1
-nvm use 10.18.1 > /dev/null 2>&1
-nvm alias default 10.18.1 > /dev/null 2>&1
+nvm install 12 > /dev/null 2>&1
+nvm use 12 > /dev/null 2>&1
+nvm alias default 12 > /dev/null 2>&1
 
 echo "NPM tools"
 install_npm bashy
