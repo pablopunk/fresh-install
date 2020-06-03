@@ -62,7 +62,7 @@ then
   install_cask istat-menus
   install_cask iterm2
   install_cask karabiner-elements
-  install_cask nordvpn
+  install_cask protonvpn
   install_cask slack
   install_cask spotify
   install_cask telegram-desktop
