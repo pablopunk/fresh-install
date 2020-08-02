@@ -75,6 +75,7 @@ then
   install_brew bash-completion
   install_brew brew-cask-completion
   install_brew coreutils
+  install_brew git-delta
   install_brew lolcat
   install_brew mas
   install_brew neovim
@@ -123,6 +124,7 @@ then
 
   export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
   install_brew asciinema
+  install_brew git-delta
   install_brew neovim
   install_brew nvm
   install_brew python
@@ -145,7 +147,6 @@ nvm alias default 12 > /dev/null 2>&1
 
 echo "NPM tools"
 install_npm bashy
-install_npm diff-so-fancy
 install_npm eslint
 install_npm eslint-config-standard
 install_npm eslint-plugin-import
