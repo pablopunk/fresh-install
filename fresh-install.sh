@@ -1,7 +1,10 @@
+sudo echo # require sudo perms
+
 # VARIABLES
 
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an `install.sh` script
+computer_hostname="sherlock"
 
 # FUNCTIONS
 
@@ -98,11 +101,44 @@ then
   install_mas Newton
 
   echo "Apple configs"
-  defaults write com.apple.dock autohide-delay -float 0
-  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false && \
-  defaults write NSGlobalDomain KeyRepeat -int 1 && \
-  defaults write NSGlobalDomain InitialKeyRepeat -int 15
+  # don't restore apps on reboot
   defaults write -g ApplePersistence -bool no
+  # tap to click
+  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+  defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+  defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+  # mission control on three fingers up and app windows on down
+  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerVertSwipeGesture -int 2
+  # disable hold keys to show keyboard popup keys
+  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false && \
+  # better key repeat
+  defaults write NSGlobalDomain InitialKeyRepeat -int 15
+  defaults write NSGlobalDomain KeyRepeat -int 1 && \
+  # no delay for dock hiding
+  defaults write com.apple.dock autohide-delay -float 0
+  # hostname
+  sudo scutil --set HostName $computer_hostname
+  sudo scutil --set LocalHostName $computer_hostname
+  sudo scutil --set ComputerName $computer_hostname
+  dscacheutil -flushcache
+  # windows minimize on app icons
+  defaults write com.apple.dock minimize-to-application -bool true
+  # scaling effect on minimize
+  defaults write com.apple.dock mineffect -string "scale"
+  # make mission control work like exposé
+  defaults write com.apple.dock expose-group-by-app -bool false
+  # make Dock icons of hidden applications translucent
+  defaults write com.apple.dock showhidden -bool true
+  # zoom with ctrl+trackpad
+  defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+  # show status bar and path on Finder
+  defaults write com.apple.finder ShowStatusBar -bool true
+  defaults write com.apple.finder ShowPathbar -bool true
+  # show all file extensions
+  defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+  # drag with trackpad (not sure if it works)
+  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -bool true
+
 
 elif [ "$(uname)" = "Linux" ]
 then
