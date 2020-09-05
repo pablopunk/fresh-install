@@ -165,6 +165,7 @@ then
   install_brew neovim
   install_brew nvm
   install_brew python
+  install_brew ripgrep
   install_brew starship
   install_brew tmuxinator
   install_brew watchman
