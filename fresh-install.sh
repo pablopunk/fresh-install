@@ -179,7 +179,7 @@ if [ "$(uname)" = "Darwin" ]; then
 else
   [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && . "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
 fi
-latest="$(curl -s https://versions.pablo.pink/api/node/v$node_version/latest)"
+latest="$(curl -s https://versions.pablo.im/api/node/v$node_version/latest)"
 latest=${latest:1} # v1.1.1 -> 1.1.1
 nvm install $latest > /dev/null 2>&1
 nvm use $latest > /dev/null 2>&1
