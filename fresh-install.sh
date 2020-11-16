@@ -49,12 +49,14 @@ function install_apt {
 
 echo
 
+# install homebrew for both mac/linux
+hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
 if [ "$(uname)" = "Darwin" ]
 then
   echo "* macOS *"
   echo
   xcode-select -p 1>/dev/null || ( echo "Install xcode tools with `xcode-select --install`" && exit )
-  hash brew 2>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
   echo "Cask apps"
   install_cask appcleaner
@@ -157,8 +159,6 @@ then
   install_apt zsh
 
   echo "Homebrew tools"
-  hash brew 2>/dev/null || sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-
   export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
   install_brew asciinema
   install_brew git-delta
