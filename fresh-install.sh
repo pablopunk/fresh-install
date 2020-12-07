@@ -4,7 +4,7 @@ sudo echo # require sudo perms
 
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an `install.sh` script
-computer_hostname="sherlock"
+mac_hostname="sherlock"
 node_version="12"
 
 # FUNCTIONS
@@ -120,9 +120,9 @@ then
   # no delay for dock hiding
   defaults write com.apple.dock autohide-delay -float 0
   # hostname
-  sudo scutil --set HostName $computer_hostname
-  sudo scutil --set LocalHostName $computer_hostname
-  sudo scutil --set ComputerName $computer_hostname
+  sudo scutil --set HostName $mac_hostname
+  sudo scutil --set LocalHostName $mac_hostname
+  sudo scutil --set ComputerName $mac_hostname
   dscacheutil -flushcache
   # windows minimize on app icons
   defaults write com.apple.dock minimize-to-application -bool true
