@@ -5,7 +5,7 @@ sudo echo # require sudo perms
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an `install.sh` script
 mac_hostname="sherlock"
-node_version="12"
+node_version="v12"
 
 # FUNCTIONS
 
@@ -179,8 +179,7 @@ if [ "$(uname)" = "Darwin" ]; then
 else
   [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && . "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
 fi
-latest="$(curl -s https://versions.pablopunk.com/api/node/v$node_version/latest)"
-latest=${latest:1} # v1.1.1 -> 1.1.1
+latest="$(curl -s https://versions.pablopunk.com/api/node/$node_version/latest)"
 nvm install $latest > /dev/null 2>&1
 nvm use $latest > /dev/null 2>&1
 nvm alias default $latest > /dev/null 2>&1
