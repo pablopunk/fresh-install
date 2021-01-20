@@ -3,24 +3,22 @@ sudo echo # require sudo perms
 # VARIABLES
 
 dotfiles_folder="$HOME/.dotfiles"
-dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an `install.sh` script
-mac_hostname="sherlock"
-node_version="v12"
+dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an install.sh script
 
 # FUNCTIONS
 
 function install_cask {
 if [ "$(uname)" = "Darwin" ]
 then
-  ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || brew cask install $@ 2> /dev/null
+  ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || brew install --cask $@ 2> /dev/null
 elif [ "$(uname)" = "Linux" ]
 then
-  ls /home/linuxbrew/.linuxbrew/Caskroom//$1 > /dev/null 2>&1 || brew cask install $@ 2> /dev/null
+  ls /home/linuxbrew/.linuxbrew/Caskroom//$1 > /dev/null 2>&1 || brew install --cask $@ 2> /dev/null
 fi
 }
 
 function install_npm {
-  [[ -d "$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/lib/node_modules/$1" ]] || \
+  [[ -d "$NVM_DIR/versions/node/$(<$NVM_DIR/alias/default)/lib/node_modules/$1" ]] || \
     npm i -g $@  > /dev/null 2>&1
 }
 
@@ -61,47 +59,30 @@ then
   echo "Cask apps"
   install_cask appcleaner
   install_cask clipy
-  install_cask font-cascadia
-  install_cask font-hack
   install_cask google-chrome
-  install_cask iina
-  install_cask istat-menus
   install_cask karabiner-elements
   install_cask kitty
-  install_cask protonvpn
   install_cask slack
   install_cask spotify
   install_cask telegram-desktop
-  install_cask transmission
   install_cask whatsapp
 
   echo "Homebrew tools"
   install_brew ag
   install_brew asciinema
   install_brew bash-completion
-  install_brew brew-cask-completion
   install_brew coreutils
   install_brew git-delta
-  install_brew lolcat
-  install_brew mas
   install_brew neovim
   install_brew nvm
-  install_brew pip-completion
   install_brew python
   install_brew ripgrep
-  install_brew starship
   install_brew tmux
   install_brew tmuxinator
   install_brew watchman
   install_brew wget
   install_brew yarn
   install_brew yarn-completion
-
-  echo "Mac App Store apps"
-  mas install 1470584107 # workaround to install Dato
-  install_mas HyperDock
-  install_mas Lungo
-  install_mas Newton
 
   echo "Apple configs"
   # don't restore apps on reboot
@@ -113,16 +94,12 @@ then
   # mission control on three fingers up and app windows on down
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerVertSwipeGesture -int 2
   # disable hold keys to show keyboard popup keys
-  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false && \
+  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
   # better key repeat
   defaults write NSGlobalDomain InitialKeyRepeat -int 15
-  defaults write NSGlobalDomain KeyRepeat -int 1 && \
+  defaults write NSGlobalDomain KeyRepeat -int 1
   # no delay for dock hiding
   defaults write com.apple.dock autohide-delay -float 0
-  # hostname
-  sudo scutil --set HostName $mac_hostname
-  sudo scutil --set LocalHostName $mac_hostname
-  sudo scutil --set ComputerName $mac_hostname
   dscacheutil -flushcache
   # windows minimize on app icons
   defaults write com.apple.dock minimize-to-application -bool true
@@ -174,15 +151,11 @@ fi
 echo "Configure NVM"
 export NVM_DIR="$HOME/.nvm"
 mkdir -p $NVM_DIR
-if [ "$(uname)" = "Darwin" ]; then
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
-else
-  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && . "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
-fi
-latest="$(curl -s https://versions.pablopunk.com/api/node/$node_version/latest)"
-nvm install $latest > /dev/null 2>&1
-nvm use $latest > /dev/null 2>&1
-nvm alias default $latest > /dev/null 2>&1
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+nvm install v14.15.4 > /dev/null 2>&1
+nvm use v14.15.4 > /dev/null 2>&1
+nvm alias default v14.15.4 > /dev/null 2>&1
 
 echo "NPM tools"
 install_npm bashy
@@ -206,14 +179,14 @@ install_npm trash-cli
 install_npm typescript
 install_npm vercel
 
+echo "Python tools"
 function install_pip3 {
-  pip3 install $@ > /dev/null 2>&1
+  python3 -m pip install $@
 }
-
-echo "pip3 tools"
-install_pip3 grip
+install_pip3 pip setuptools --upgrade
 install_pip3 neovim --user
-install_pip3 --upgrade pip setuptools
+install_pip3 grip
+
 
 echo "oh-my-zsh"
 if [ ! -d $HOME/.oh-my-zsh ]
