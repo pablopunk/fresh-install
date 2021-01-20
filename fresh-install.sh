@@ -197,6 +197,7 @@ fi
 echo "rust & cargo"
 hash cargo 2>/dev/null || curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 
+echo
 echo "Dotfiles"
 if [ ! -d $dotfiles_folder ]
 then
