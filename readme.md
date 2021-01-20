@@ -7,7 +7,11 @@ Don't like to recovering your sysmtem from a backup? With this tool you can inst
 
 ## Requirements
 
-Not much, just a modern version of mac/linux with an internet connection, `bash` and `curl` will work.
+* bash
+* curl
+* git
+
+>On Apple M1 Mac: until hombrew is stable on ARM, use this script after `arch -x86_64 zsh`
 
 ## Usage
 
