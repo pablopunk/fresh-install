@@ -5,7 +5,12 @@ sudo echo # require sudo perms
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an install.sh script
 
-# FUNCTIONS
+# SCRIPT
+
+echo
+
+# install homebrew for both mac/linux
+hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 function install_cask {
 if [ "$(uname)" = "Darwin" ]
@@ -15,11 +20,6 @@ elif [ "$(uname)" = "Linux" ]
 then
   ls /home/linuxbrew/.linuxbrew/Caskroom//$1 > /dev/null 2>&1 || brew install --cask $@ 2> /dev/null
 fi
-}
-
-function install_npm {
-  [[ -d "$NVM_DIR/versions/node/$(<$NVM_DIR/alias/default)/lib/node_modules/$1" ]] || \
-    npm i -g $@  > /dev/null 2>&1
 }
 
 function install_brew {
@@ -32,24 +32,6 @@ function install_brew {
   fi
 }
 
-function install_mas {
-  if [ -z "$(mas list | cut -d' ' -f2 | grep $1)" ]
-  then
-    mas lucky $1
-  fi
-}
-
-function install_apt {
-  sudo apt install $@ -y > /dev/null
-}
-
-# SCRIPT
-
-echo
-
-# install homebrew for both mac/linux
-hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
 if [ "$(uname)" = "Darwin" ]
 then
   echo "* macOS *"
@@ -60,6 +42,7 @@ then
   install_cask appcleaner
   install_cask clipy
   install_cask google-chrome
+  install_cask hyperswitch
   install_cask karabiner-elements
   install_cask kitty
   install_cask slack
@@ -124,6 +107,10 @@ elif [ "$(uname)" = "Linux" ]
 then
   echo "* linux *"
 
+  function install_apt {
+    sudo apt install $@ -y > /dev/null
+  }
+
   echo "APT tools"
   sudo apt update > /dev/null
   install_apt build-essential
@@ -158,6 +145,10 @@ nvm use v14.15.4 > /dev/null 2>&1
 nvm alias default v14.15.4 > /dev/null 2>&1
 
 echo "NPM tools"
+function install_npm {
+  [[ -d "$NVM_DIR/versions/node/$(<$NVM_DIR/alias/default)/lib/node_modules/$1" ]] || \
+    npm i -g $@  > /dev/null 2>&1
+}
 install_npm bashy
 install_npm eslint
 install_npm eslint-config-standard
@@ -186,7 +177,6 @@ function install_pip3 {
 install_pip3 pip setuptools --upgrade
 install_pip3 neovim --user
 install_pip3 grip
-
 
 echo "oh-my-zsh"
 if [ ! -d $HOME/.oh-my-zsh ]
