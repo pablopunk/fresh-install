@@ -40,11 +40,11 @@ then
 
   echo "Cask apps"
   install_cask appcleaner
-  install_cask clipy
   install_cask google-chrome
   install_cask hyperswitch
   install_cask karabiner-elements
   install_cask kitty
+  install_cask raycast
   install_cask slack
   install_cask spotify
   install_cask telegram-desktop
