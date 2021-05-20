@@ -16,20 +16,20 @@ hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubuserconten
 function install_cask {
 if [ "$(uname)" = "Darwin" ]
 then
-  ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || brew install --cask $@ 2> /dev/null
+  ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || brew install --cask $@
 elif [ "$(uname)" = "Linux" ]
 then
-  ls /home/linuxbrew/.linuxbrew/Caskroom/$1 > /dev/null 2>&1 || brew install --cask $@ 2> /dev/null
+  ls /home/linuxbrew/.linuxbrew/Caskroom/$1 > /dev/null 2>&1 || brew install --cask $@
 fi
 }
 
 function install_brew {
   if [ "$(uname)" = "Darwin" ]
   then
-    ls /usr/local/Cellar/$1 > /dev/null 2>&1 || brew install $@ 2> /dev/null
+    ls /usr/local/Cellar/$1 > /dev/null 2>&1 || brew install $@
   elif [ "$(uname)" = "Linux" ]
   then
-    ls /home/linuxbrew/.linuxbrew/Cellar/$1 > /dev/null 2>&1 || brew install $@ 2> /dev/null
+    ls /home/linuxbrew/.linuxbrew/Cellar/$1 > /dev/null 2>&1 || brew install $@
   fi
 }
 
@@ -109,11 +109,11 @@ then
   echo "* linux *"
 
   function install_apt {
-    sudo apt install $@ -y > /dev/null
+    sudo apt install $@ -y
   }
 
   echo "APT tools"
-  sudo apt update > /dev/null
+  sudo apt update
   install_apt build-essential
   install_apt curl
   install_apt git
@@ -141,14 +141,14 @@ export NVM_DIR="$HOME/.nvm"
 mkdir -p $NVM_DIR
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-nvm install $node_version > /dev/null 2>&1
-nvm use $node_version > /dev/null 2>&1
-nvm alias default $node_version > /dev/null 2>&1
+nvm install $node_version
+nvm use $node_version
+nvm alias default $node_version
 
 echo "NPM tools"
 function install_npm {
   [[ -d "$NVM_DIR/versions/node/$(<$NVM_DIR/alias/default)/lib/node_modules/$1" ]] || \
-    npm i -g $@  > /dev/null 2>&1
+    npm i -g $@
 }
 install_npm bashy
 install_npm eslint
