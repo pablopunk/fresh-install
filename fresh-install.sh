@@ -4,6 +4,7 @@ sudo echo # require sudo perms
 
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an install.sh script
+node_version="$(curl -s https://versions.pablopunk.com/api/node/v14/latest)"
 
 # SCRIPT
 
@@ -18,7 +19,7 @@ then
   ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || brew install --cask $@ 2> /dev/null
 elif [ "$(uname)" = "Linux" ]
 then
-  ls /home/linuxbrew/.linuxbrew/Caskroom//$1 > /dev/null 2>&1 || brew install --cask $@ 2> /dev/null
+  ls /home/linuxbrew/.linuxbrew/Caskroom/$1 > /dev/null 2>&1 || brew install --cask $@ 2> /dev/null
 fi
 }
 
@@ -140,9 +141,9 @@ export NVM_DIR="$HOME/.nvm"
 mkdir -p $NVM_DIR
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-nvm install v14.15.4 > /dev/null 2>&1
-nvm use v14.15.4 > /dev/null 2>&1
-nvm alias default v14.15.4 > /dev/null 2>&1
+nvm install $node_version > /dev/null 2>&1
+nvm use $node_version > /dev/null 2>&1
+nvm alias default $node_version > /dev/null 2>&1
 
 echo "NPM tools"
 function install_npm {
