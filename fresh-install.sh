@@ -159,13 +159,10 @@ install_npm eslint-plugin-promise
 install_npm eslint-plugin-react
 install_npm eslint-plugin-standard
 install_npm fd-find
-install_npm miny
 install_npm neovim
 install_npm nuup
 install_npm odf
 install_npm prettier
-install_npm serve
-install_npm taski
 install_npm tldr
 install_npm trash-cli
 install_npm typescript
