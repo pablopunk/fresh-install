@@ -52,8 +52,6 @@ then
   install_cask whatsapp
 
   echo "Homebrew tools"
-  install_brew ag
-  install_brew asciinema
   install_brew bash-completion
   install_brew coreutils
   install_brew git-delta
@@ -65,8 +63,6 @@ then
   install_brew tmuxinator
   install_brew watchman
   install_brew wget
-  install_brew yarn
-  install_brew yarn-completion
 
   echo "Apple configs"
   # don't restore apps on reboot
@@ -117,7 +113,6 @@ then
   install_apt build-essential
   install_apt curl
   install_apt git
-  install_apt silversearcher-ag
   install_apt software-properties-common
   install_apt tmux
   install_apt vim
@@ -125,13 +120,11 @@ then
 
   echo "Homebrew tools"
   export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-  install_brew asciinema
   install_brew git-delta
   install_brew neovim
   install_brew nvm
   install_brew python
   install_brew ripgrep
-  install_brew starship
   install_brew tmuxinator
   install_brew watchman
 fi
@@ -160,7 +153,6 @@ install_npm eslint-plugin-react
 install_npm eslint-plugin-standard
 install_npm fd-find
 install_npm neovim
-install_npm nuup
 install_npm odf
 install_npm prettier
 install_npm tldr
@@ -172,7 +164,6 @@ echo "Python tools"
 function install_pip3 {
   python3 -m pip install $@
 }
-install_pip3 pip setuptools --upgrade
 install_pip3 neovim --user
 install_pip3 grip
 
@@ -182,8 +173,8 @@ then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
-echo "rust & cargo"
-hash cargo 2>/dev/null || curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
+# echo "rust & cargo"
+# hash cargo 2>/dev/null || curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 
 echo
 echo "Dotfiles"
