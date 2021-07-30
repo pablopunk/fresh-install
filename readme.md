@@ -2,7 +2,7 @@
 
 > Essential tools and apps you are too lazy to install
 
-Don't like to recovering your sysmtem from a backup? With this tool you can install a fresh copy of *macOS* or *debian based linux* any day and still have all the tools you want.
+Don't like to recovering your system from a backup? With this tool you can install a fresh copy of *macOS* or *debian based linux* any day and still have all the tools you want.
 
 
 ## Requirements
@@ -10,8 +10,6 @@ Don't like to recovering your sysmtem from a backup? With this tool you can inst
 * bash
 * curl
 * git
-
->On Apple M1 Mac: until hombrew is stable on ARM, use this script after `arch -x86_64 zsh`
 
 ## Usage
 

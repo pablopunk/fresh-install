@@ -133,8 +133,8 @@ fi
 echo "Configure NVM"
 export NVM_DIR="$HOME/.nvm"
 mkdir -p $NVM_DIR
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # this loads nvm on macOS
-[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && . "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" # this one on linux
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # macOS
+[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && . "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" # Linux
 nvm install $node_version
 nvm use $node_version
 nvm alias default $node_version
