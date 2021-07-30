@@ -12,6 +12,7 @@ echo
 
 # install homebrew for both mac/linux
 hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 function install_cask {
 if [ "$(uname)" = "Darwin" ]
