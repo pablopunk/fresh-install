@@ -8,62 +8,40 @@ node_version="$(curl -s https://versions.pablopunk.com/api/node/v14/latest)"
 
 # SCRIPT
 
-echo
-
-# install homebrew for both mac/linux
+echo "Installing homebrew"
 hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-function install_cask {
 if [ "$(uname)" = "Darwin" ]
 then
-  ls /usr/local/Caskroom/$1 > /dev/null 2>&1 || brew install --cask $@
-elif [ "$(uname)" = "Linux" ]
-then
-  ls /home/linuxbrew/.linuxbrew/Caskroom/$1 > /dev/null 2>&1 || brew install --cask $@
-fi
-}
-
-function install_brew {
-  if [ "$(uname)" = "Darwin" ]
-  then
-    ls /usr/local/Cellar/$1 > /dev/null 2>&1 || brew install $@
-  elif [ "$(uname)" = "Linux" ]
-  then
-    ls /home/linuxbrew/.linuxbrew/Cellar/$1 > /dev/null 2>&1 || brew install $@
-  fi
-}
-
-if [ "$(uname)" = "Darwin" ]
-then
-  echo "* macOS *"
+  echo "macOS detected"
   echo
   xcode-select -p 1>/dev/null || ( echo "Install xcode tools with `xcode-select --install`" && exit )
 
   echo "Cask apps"
-  install_cask appcleaner
-  install_cask google-chrome
-  install_cask hyperswitch
-  install_cask karabiner-elements
-  install_cask kitty
-  install_cask raycast
-  install_cask slack
-  install_cask spotify
-  install_cask telegram-desktop
-  install_cask whatsapp
+  brew install --cask appcleaner
+  brew install --cask google-chrome
+  brew install --cask hyperswitch
+  brew install --cask karabiner-elements
+  brew install --cask kitty
+  brew install --cask raycast
+  brew install --cask slack
+  brew install --cask spotify
+  brew install --cask telegram-desktop
+  brew install --cask whatsapp
 
   echo "Homebrew tools"
-  install_brew bash-completion
-  install_brew coreutils
-  install_brew git-delta
-  install_brew neovim
-  install_brew nvm
-  install_brew python
-  install_brew ripgrep
-  install_brew tmux
-  install_brew tmuxinator
-  install_brew watchman
-  install_brew wget
+  brew install bash-completion
+  brew install coreutils
+  brew install git-delta
+  brew install neovim
+  brew install nvm
+  brew install python
+  brew install ripgrep
+  brew install tmux
+  brew install tmuxinator
+  brew install watchman
+  brew install wget
 
   echo "Apple configs"
   # don't restore apps on reboot
@@ -103,31 +81,27 @@ then
 
 elif [ "$(uname)" = "Linux" ]
 then
-  echo "* linux *"
-
-  function install_apt {
-    sudo apt install $@ -y
-  }
+  echo "Linux detected"
 
   echo "APT tools"
   sudo apt update
-  install_apt build-essential
-  install_apt curl
-  install_apt git
-  install_apt software-properties-common
-  install_apt tmux
-  install_apt vim
-  install_apt zsh
+  sudo apt install -y build-essential
+  sudo apt install -y curl
+  sudo apt install -y git
+  sudo apt install -y software-properties-common
+  sudo apt install -y tmux
+  sudo apt install -y vim
+  sudo apt install -y zsh
 
   echo "Homebrew tools"
   export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-  install_brew git-delta
-  install_brew neovim
-  install_brew nvm
-  install_brew python
-  install_brew ripgrep
-  install_brew tmuxinator
-  install_brew watchman
+  brew install git-delta
+  brew install neovim
+  brew install nvm
+  brew install python
+  brew install ripgrep
+  brew install tmuxinator
+  brew install watchman
 fi
 
 echo "Configure NVM"
@@ -140,33 +114,26 @@ nvm use $node_version
 nvm alias default $node_version
 
 echo "NPM tools"
-function install_npm {
-  [[ -d "$NVM_DIR/versions/node/$(<$NVM_DIR/alias/default)/lib/node_modules/$1" ]] || \
-    npm i -g $@
-}
-install_npm bashy
-install_npm eslint
-install_npm eslint-config-standard
-install_npm eslint-plugin-import
-install_npm eslint-plugin-node
-install_npm eslint-plugin-promise
-install_npm eslint-plugin-react
-install_npm eslint-plugin-standard
-install_npm fd-find
-install_npm neovim
-install_npm odf
-install_npm prettier
-install_npm tldr
-install_npm trash-cli
-install_npm typescript
-install_npm vercel
+npm i -g bashy
+npm i -g eslint
+npm i -g eslint-config-standard
+npm i -g eslint-plugin-import
+npm i -g eslint-plugin-node
+npm i -g eslint-plugin-promise
+npm i -g eslint-plugin-react
+npm i -g eslint-plugin-standard
+npm i -g fd-find
+npm i -g neovim
+npm i -g odf
+npm i -g prettier
+npm i -g tldr
+npm i -g trash-cli
+npm i -g typescript
+npm i -g vercel
 
 echo "Python tools"
-function install_pip3 {
-  python3 -m pip install $@
-}
-install_pip3 neovim --user
-install_pip3 grip
+python3 -m pip install neovim --user
+python3 -m pip install grip
 
 echo "oh-my-zsh"
 if [ ! -d $HOME/.oh-my-zsh ]
