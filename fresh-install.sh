@@ -5,8 +5,27 @@ sudo echo # require sudo perms
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an install.sh script
 node_version="$(curl -s https://versions.pablopunk.com/api/node/v14/latest)"
+email="pablo@pablopunk.com"
 
 # SCRIPT
+
+if [ ! -f ~/.ssh/id_rsa ]; then
+  echo "Github SSH keys"
+  ssh-keygen -t rsa -b 4096 -C "$email"
+  ssh-add ~/.ssh/id_rsa
+  echo
+  echo "Copy the following public key to Github (opened URL)"
+  echo
+  echo "Title: $(hostname)"
+  echo
+  echo "Key:"
+  echo
+  cat ~/.ssh/id_rsa.pub
+  echo
+  url="https://github.com/settings/ssh/new"
+  [ -x "$(command -v xdg-open)" ] && xdg-open "$url" || open "$url"
+  read -p "Press ENTER when you're done " enter
+fi
 
 echo "Installing homebrew"
 hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
