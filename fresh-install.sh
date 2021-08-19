@@ -13,8 +13,10 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   echo "Github SSH keys"
   ssh-keygen -t rsa -b 4096 -C "$email"
   ssh-add ~/.ssh/id_rsa
+  url="https://github.com/settings/ssh/new"
   echo
-  echo "Copy the following public key to Github (opened URL)"
+  echo "Copy the following public key to Github:"
+  echo "URL: $url"
   echo
   echo "Title: $(hostname)"
   echo
@@ -22,8 +24,8 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   echo
   cat ~/.ssh/id_rsa.pub
   echo
-  url="https://github.com/settings/ssh/new"
-  [ -x "$(command -v xdg-open)" ] && xdg-open "$url" || open "$url"
+  [ -x "$(command -v xdg-open)" ] && xdg-open "$url"
+  [ -x "$(command -v open)" ] && open "$url"
   read -p "Press ENTER when you're done " enter
 fi
 
