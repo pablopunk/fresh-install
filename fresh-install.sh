@@ -29,15 +29,18 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   read -p "Press ENTER when you're done " enter
 fi
 
-echo "Installing homebrew"
-hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
+echo "rust & cargo"
+hash cargo 2>/dev/null || curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 
 if [ "$(uname)" = "Darwin" ]
 then
   echo "macOS detected"
   echo
   xcode-select -p 1>/dev/null || ( echo "Install xcode tools with `xcode-select --install`" && exit )
+
+  echo "Installing homebrew"
+  hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 
   echo "Cask apps"
   brew install --cask appcleaner
@@ -109,27 +112,28 @@ then
   sudo apt install -y build-essential
   sudo apt install -y curl
   sudo apt install -y git
+  sudo apt install -y neovim
+  sudo apt install -y python3
   sudo apt install -y software-properties-common
   sudo apt install -y tmux
   sudo apt install -y vim
   sudo apt install -y zsh
 
-  echo "Homebrew tools"
-  export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-  brew install git-delta
-  brew install neovim
-  brew install nvm
-  brew install python
-  brew install ripgrep
-  brew install tmuxinator
-  brew install watchman
+  echo "Installing NVM"
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+  echo "Cargo tools"
+  # cargo install watchman
+  cargo install git-delta
+  cargo install ripgrep
 fi
 
 echo "Configure NVM"
 export NVM_DIR="$HOME/.nvm"
 mkdir -p $NVM_DIR
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # macOS
-[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && . "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" # Linux
 nvm install $node_version
 nvm use $node_version
 nvm alias default $node_version
@@ -161,9 +165,6 @@ if [ ! -d $HOME/.oh-my-zsh ]
 then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
-
-# echo "rust & cargo"
-# hash cargo 2>/dev/null || curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 
 echo
 echo "Dotfiles"
