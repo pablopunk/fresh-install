@@ -15,9 +15,6 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   ssh-add ~/.ssh/id_rsa
   url="https://github.com/settings/ssh/new"
   echo
-  echo "Copy the following public key to Github:"
-  echo "URL: $url"
-  echo
   echo "Title: $(hostname)"
   echo
   echo "Key:"
@@ -26,7 +23,8 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   echo
   [ -x "$(command -v xdg-open)" ] && xdg-open "$url"
   [ -x "$(command -v open)" ] && open "$url"
-  read -p "Press ENTER when you're done " enter
+  echo "Copy the public key above to Github and then run this script again"
+  echo $url
 fi
 
 echo "rust & cargo"
