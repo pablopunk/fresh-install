@@ -90,8 +90,6 @@ then
   defaults write com.apple.dock expose-group-by-app -bool false
   # make Dock icons of hidden applications translucent
   defaults write com.apple.dock showhidden -bool true
-  # zoom with ctrl+trackpad
-  defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
   # show status bar and path on Finder
   defaults write com.apple.finder ShowStatusBar -bool true
   defaults write com.apple.finder ShowPathbar -bool true
