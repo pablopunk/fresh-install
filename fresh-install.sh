@@ -35,6 +35,7 @@ then
   echo "macOS detected"
   echo
   xcode-select -p 1>/dev/null || ( echo "Install xcode tools with `xcode-select --install`" && exit )
+  softwareupdate --install-rosetta
 
   echo "Installing homebrew"
   hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
