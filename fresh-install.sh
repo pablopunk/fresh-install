@@ -41,30 +41,29 @@ then
   hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   eval "$(/opt/homebrew/bin/brew shellenv)"
 
-  echo "Cask apps"
-  brew install --cask appcleaner
-  brew install --cask google-chrome
-  brew install --cask hyperswitch
-  brew install --cask karabiner-elements
-  brew install --cask kitty
-  brew install --cask raycast
-  brew install --cask slack
-  brew install --cask spotify
-  brew install --cask telegram-desktop
-  brew install --cask whatsapp
-
-  echo "Homebrew tools"
+  echo "Homebrew apps"
+  brew install alt-tab
+  brew install appcleaner
   brew install bash-completion
   brew install coreutils
   brew install git-delta
+  brew install google-chrome
+  brew install hyperswitch
+  brew install karabiner-elements
+  brew install kitty
   brew install neovim
   brew install nvm
   brew install python
+  brew install raycast
   brew install ripgrep
+  brew install slack
+  brew install spotify
+  brew install telegram-desktop
   brew install tmux
   brew install tmuxinator
   brew install watchman
   brew install wget
+  brew install whatsapp
 
   echo "Apple configs"
   # don't restore apps on reboot
