@@ -61,6 +61,7 @@ then
   brew install telegram-desktop
   brew install tmux
   brew install tmuxinator
+  brew install vanilla
   brew install watchman
   brew install wget
   brew install whatsapp
