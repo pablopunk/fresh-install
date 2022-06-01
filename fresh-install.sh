@@ -43,7 +43,6 @@ then
 
   echo "Homebrew apps"
   brew install alt-tab
-  brew install appcleaner
   brew install bash-completion
   brew install coreutils
   brew install git-delta
