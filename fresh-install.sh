@@ -64,6 +64,8 @@ then
   brew install watchman
   brew install wget
   brew install whatsapp
+  brew install zsh-autosuggestions
+  brew install zsh-syntax-highlighting
 
   echo "Apple configs"
   # don't restore apps on reboot
