@@ -44,6 +44,7 @@ then
   echo "Homebrew apps"
   brew install alt-tab
   brew install bash-completion
+  brew install cleanshot
   brew install coreutils
   brew install git-delta
   brew install google-chrome
