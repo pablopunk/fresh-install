@@ -48,6 +48,7 @@ then
   brew install coreutils
   brew install git-delta
   brew install google-chrome
+  brew install homebrew/cask-fonts/font-caskaydia-cove-nerd-font
   brew install hyperswitch
   brew install karabiner-elements
   brew install kitty
