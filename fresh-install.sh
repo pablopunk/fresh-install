@@ -51,6 +51,7 @@ then
   brew install homebrew/cask-fonts/font-caskaydia-cove-nerd-font
   brew install hyperswitch
   brew install karabiner-elements
+  brew install pritunl
   brew install kitty
   brew install neovim
   brew install nvm
