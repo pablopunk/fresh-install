@@ -53,6 +53,7 @@ then
   brew install karabiner-elements
   brew install pritunl
   brew install kitty
+  brew install monitorcontrol
   brew install neovim
   brew install nvm
   brew install python
