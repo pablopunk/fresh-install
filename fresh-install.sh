@@ -43,19 +43,23 @@ then
 
   echo "Homebrew apps"
   brew install alt-tab
+  brew install arc
   brew install bash-completion
   brew install cleanshot
   brew install coreutils
+  brew install cron
+  brew install discord
   brew install git-delta
   brew install google-chrome
   brew install homebrew/cask-fonts/font-caskaydia-cove-nerd-font
   brew install hyperswitch
   brew install karabiner-elements
-  brew install pritunl
   brew install kitty
+  brew install missive
   brew install monitorcontrol
   brew install neovim
   brew install nvm
+  brew install pritunl
   brew install python
   brew install raycast
   brew install ripgrep
@@ -68,6 +72,7 @@ then
   brew install watchman
   brew install wget
   brew install whatsapp
+  brew install zoom
   brew install zsh-autosuggestions
   brew install zsh-syntax-highlighting
 
