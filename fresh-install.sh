@@ -57,7 +57,6 @@ then
   brew install kitty
   brew install missive
   brew install monitorcontrol
-  brew install neovim
   brew install nvm
   brew install pritunl
   brew install python
