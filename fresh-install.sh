@@ -156,6 +156,7 @@ npm i -g eslint-plugin-standard
 npm i -g fd-find
 npm i -g neovim
 npm i -g odf
+npm i -g pnpm@6
 npm i -g prettier
 npm i -g tldr
 npm i -g trash-cli
