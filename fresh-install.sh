@@ -55,6 +55,7 @@ then
   brew install hyperswitch
   brew install karabiner-elements
   brew install kitty
+  brew install latest
   brew install missive
   brew install monitorcontrol
   brew install nvm
