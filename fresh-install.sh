@@ -148,12 +148,9 @@ nvm alias default $node_version
 echo "NPM tools"
 npm i -g bashy
 npm i -g eslint
-npm i -g eslint-config-standard
-npm i -g eslint-plugin-import
-npm i -g eslint-plugin-node
-npm i -g eslint-plugin-promise
 npm i -g eslint-plugin-react
-npm i -g eslint-plugin-standard
+npm i -g @typescript-eslint/eslint-plugin
+npm i -g @typescript-eslint/parser
 npm i -g fd-find
 npm i -g neovim
 npm i -g odf
