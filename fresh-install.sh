@@ -62,6 +62,7 @@ then
   brew install pritunl
   brew install python
   brew install raycast
+  brew install rectangle
   brew install ripgrep
   brew install slack
   brew install spotify
