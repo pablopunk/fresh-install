@@ -43,6 +43,7 @@ then
 
   echo "Homebrew apps"
   brew install alt-tab
+  brew install app-fair
   brew install arc
   brew install bash-completion
   brew install cleanshot
