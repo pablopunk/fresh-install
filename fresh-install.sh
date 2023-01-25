@@ -27,55 +27,75 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   echo $url
 fi
 
-echo "rust & cargo"
-hash cargo 2>/dev/null || curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
+brew_list=""
+function brew_install {
+  [[ -z $brew_list ]] && brew_list="$(brew list)" # cache installed brew packages
+  [[ -z "$(echo $brew_list | grep -w $1)" ]] && brew install $1 > /dev/null # install only if it's not installed
+  echo "✅ $1"
+}
+
+npm_list=""
+function npm_install {
+  [[ -z $npm_list ]] && npm_list="$(npm list -g --depth=0)" # cache installed npm packages
+  [[ -z "$(echo $npm_list | grep -w $1)" ]] && npm install -g $1 > /dev/null # install only if it's not installed
+  echo "✅ $1"
+}
+
+pip3_list=""
+function pip3_install {
+  [[ -z $pip3_list ]] && pip3_list="$(python3 -m pip list)" # cache installed pip3 packages
+  [[ -z "$(echo $pip3_list | grep -w $1)" ]] && python3 -m pip $@ > /dev/null # install only if it's not installed
+  echo "✅ $1"
+}
 
 if [ "$(uname)" = "Darwin" ]
 then
-  echo "macOS detected"
+  echo "[[ macOS ]]"
   echo
-  xcode-select -p 1>/dev/null || ( echo "Install xcode tools with `xcode-select --install`" && exit )
-  softwareupdate --install-rosetta
+  gcc 2> /dev/null || xcode-select -p 1>/dev/null || ( echo "Install xcode tools with `xcode-select --install`" && exit )
+  pgrep oahd > /dev/null || softwareupdate --install-rosetta
 
   echo "Installing homebrew"
   hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   eval "$(/opt/homebrew/bin/brew shellenv)"
 
-  echo "Homebrew apps"
-  brew install alt-tab
-  brew install arc
-  brew install bash-completion
-  brew install cleanshot
-  brew install coreutils
-  brew install cron
-  brew install discord
-  brew install git-delta
-  brew install google-chrome
-  brew install homebrew/cask-fonts/font-caskaydia-cove-nerd-font
-  brew install hyperswitch
-  brew install karabiner-elements
-  brew install kitty
-  brew install latest
-  brew install missive
-  brew install monitorcontrol
-  brew install nvm
-  brew install pritunl
-  brew install python
-  brew install raycast
-  brew install rectangle
-  brew install ripgrep
-  brew install slack
-  brew install spotify
-  brew install telegram-desktop
-  brew install tmux
-  brew install tmuxinator
-  brew install vanilla
-  brew install watchman
-  brew install wget
-  brew install whatsapp
-  brew install zoom
-  brew install zsh-autosuggestions
-  brew install zsh-syntax-highlighting
+  echo
+  echo "[Homebrew]"
+  echo
+  brew_install alt-tab
+  brew_install arc
+  brew_install bash-completion
+  brew_install cleanshot
+  brew_install coreutils
+  brew_install cron
+  brew_install discord
+  brew_install git-delta
+  brew_install google-chrome
+  brew_install homebrew/cask-fonts/font-caskaydia-cove-nerd-font
+  brew_install hyperswitch
+  brew_install karabiner-elements
+  brew_install kitty
+  brew_install latest
+  brew_install missive
+  brew_install monitorcontrol
+  brew_install nvm
+  brew_install pritunl
+  brew_install python
+  brew_install raycast
+  brew_install rectangle
+  brew_install ripgrep
+  brew_install slack
+  brew_install spotify
+  brew_install telegram-desktop
+  brew_install tmux
+  brew_install tmuxinator
+  brew_install vanilla
+  brew_install watchman
+  brew_install wget
+  brew_install whatsapp
+  brew_install zoom
+  brew_install zsh-autosuggestions
+  brew_install zsh-syntax-highlighting
 
   echo "Apple configs"
   # don't restore apps on reboot
@@ -113,9 +133,11 @@ then
 
 elif [ "$(uname)" = "Linux" ]
 then
-  echo "Linux detected"
+  echo "[[ Linux ]]"
 
-  echo "APT tools"
+  echo
+  echo "[APT]"
+  echo
   sudo apt update
   sudo apt install -y build-essential
   sudo apt install -y curl
@@ -127,12 +149,21 @@ then
   sudo apt install -y vim
   sudo apt install -y zsh
 
-  echo "Installing NVM"
+  echo
+  echo "[NVM]"
+  echo
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
   export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-  echo "Cargo tools"
+  echo
+  echo "[rust & cargo]"
+  echo
+  hash cargo 2>/dev/null || curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
+
+  echo
+  echo "[cargo packages]"
+  echo
   # cargo install watchman
   cargo install git-delta
   cargo install ripgrep
@@ -146,34 +177,41 @@ nvm install $node_version
 nvm use $node_version
 nvm alias default $node_version
 
-echo "NPM tools"
-npm i -g bashy
-npm i -g eslint
-npm i -g eslint-plugin-react
-npm i -g @typescript-eslint/eslint-plugin
-npm i -g @typescript-eslint/parser
-npm i -g fd-find
-npm i -g neovim
-npm i -g odf
-npm i -g pnpm@6
-npm i -g prettier
-npm i -g tldr
-npm i -g trash-cli
-npm i -g typescript
-npm i -g vercel
+echo
+echo "[NPM tools]"
+echo
+npm_install bashy
+npm_install eslint
+npm_install eslint-plugin-react
+npm_install @typescript-eslint/eslint-plugin
+npm_install @typescript-eslint/parser
+npm_install fd-find
+npm_install neovim
+npm_install odf
+npm_install pnpm@6
+npm_install prettier
+npm_install tldr
+npm_install trash-cli
+npm_install typescript
+npm_install vercel
 
-echo "Python tools"
-python3 -m pip install neovim --user
-python3 -m pip install grip
+echo
+echo "[pip]"
+echo
+pip3_install neovim --user
+pip3_install grip
 
-echo "oh-my-zsh"
+echo
+echo "[oh-my-zsh]"
+echo
 if [ ! -d $HOME/.oh-my-zsh ]
 then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
 echo
-echo "Dotfiles"
+echo "[dotfiles]"
+echo
 if [ ! -d $dotfiles_folder ]
 then
   git clone $dotfiles_repo $dotfiles_folder
