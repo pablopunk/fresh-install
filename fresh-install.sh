@@ -180,14 +180,15 @@ nvm alias default $node_version
 echo
 echo "[NPM tools]"
 echo
+npm_install @typescript-eslint/eslint-plugin
+npm_install @typescript-eslint/parser
 npm_install bashy
 npm_install eslint
 npm_install eslint-plugin-react
-npm_install @typescript-eslint/eslint-plugin
-npm_install @typescript-eslint/parser
 npm_install fd-find
 npm_install neovim
 npm_install odf
+npm_install pino-pretty
 npm_install pnpm@6
 npm_install prettier
 npm_install tldr
