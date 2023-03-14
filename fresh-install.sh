@@ -71,6 +71,7 @@ then
   brew_install discord
   brew_install git-delta
   brew_install google-chrome
+  brew_install helix
   brew_install homebrew/cask-fonts/font-caskaydia-cove-nerd-font
   brew_install hyperswitch
   brew_install karabiner-elements
@@ -89,6 +90,7 @@ then
   brew_install telegram-desktop
   brew_install tmux
   brew_install tmuxinator
+  brew_install typescript_language_server
   brew_install vanilla
   brew_install watchman
   brew_install wget
