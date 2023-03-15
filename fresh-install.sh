@@ -90,7 +90,7 @@ then
   brew_install telegram-desktop
   brew_install tmux
   brew_install tmuxinator
-  brew_install typescript_language_server
+  brew_install typescript-language-server
   brew_install vanilla
   brew_install watchman
   brew_install wget
