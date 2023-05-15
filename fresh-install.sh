@@ -185,7 +185,7 @@ npm_install fd-find
 npm_install neovim
 npm_install odf
 npm_install pino-pretty
-npm_install pnpm@6
+npm_install pnpm@8
 npm_install prettier
 npm_install tldr
 npm_install trash-cli
