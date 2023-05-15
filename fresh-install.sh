@@ -4,7 +4,8 @@ sudo echo # require sudo perms
 
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an install.sh script
-node_version="$(curl -s https://versions.pablopunk.com/api/node/v16/latest)"
+# node_version="$(curl -s https://versions.pablopunk.com/api/node/v16/latest)"
+node_version="16.19.0"
 email="pablo@pablopunk.com"
 
 # SCRIPT
@@ -80,7 +81,6 @@ then
   brew_install latest
   brew_install missive
   brew_install monitorcontrol
-  brew_install nvm
   brew_install pritunl
   brew_install python
   brew_install raycast
@@ -153,13 +153,6 @@ then
   sudo apt install -y zsh
 
   echo
-  echo "[NVM]"
-  echo
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-  echo
   echo "[rust & cargo]"
   echo
   hash cargo 2>/dev/null || curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
@@ -172,13 +165,13 @@ then
   cargo install ripgrep
 fi
 
-echo "Configure NVM"
-export NVM_DIR="$HOME/.nvm"
-mkdir -p $NVM_DIR
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # macOS
-nvm install $node_version
-nvm use $node_version
-nvm alias default $node_version
+echo
+echo "[asdf]"
+echo
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf install nodejs $node_version
+asdf global nodejs $node_version
 
 echo
 echo "[NPM tools]"
