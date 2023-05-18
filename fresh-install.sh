@@ -45,7 +45,7 @@ function npm_install {
 pip3_list=""
 function pip3_install {
   [[ -z $pip3_list ]] && pip3_list="$(python3 -m pip list)" # cache installed pip3 packages
-  [[ -z "$(echo $pip3_list | grep -w $1)" ]] && python3 -m pip $@ > /dev/null # install only if it's not installed
+  [[ -z "$(echo $pip3_list | grep -w $1)" ]] && python3 -m pip install $@ > /dev/null # install only if it's not installed
   echo "✅ $1"
 }
 
