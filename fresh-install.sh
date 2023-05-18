@@ -5,7 +5,7 @@ sudo echo # require sudo perms
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an install.sh script
 # node_version="$(curl -s https://versions.pablopunk.com/api/node/v16/latest)"
-node_version="16.20.0"
+node_version="18.16.0"
 email="pablo@pablopunk.com"
 
 # SCRIPT
@@ -73,6 +73,7 @@ then
   brew_install discord
   brew_install git-delta
   brew_install google-chrome
+  brew_install google-drive
   brew_install helix
   brew_install homebrew/cask-fonts/font-caskaydia-cove-nerd-font
   brew_install hyperswitch
