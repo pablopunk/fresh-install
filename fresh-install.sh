@@ -71,6 +71,7 @@ then
   brew_install coreutils
   brew_install cron
   brew_install discord
+  brew_install docker
   brew_install git-delta
   brew_install google-chrome
   brew_install google-drive
