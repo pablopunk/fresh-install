@@ -78,7 +78,6 @@ then
   brew_install google-drive
   brew_install helix
   brew_install homebrew/cask-fonts/font-caskaydia-cove-nerd-font
-  brew_install hyperswitch
   brew_install karabiner-elements
   brew_install kitty
   brew_install latest
@@ -90,11 +89,9 @@ then
   brew_install ripgrep
   brew_install slack
   brew_install spotify
-  brew_install telegram-desktop
   brew_install tmux
   brew_install tmuxinator
   brew_install typescript-language-server
-  brew_install vanilla
   brew_install watchman
   brew_install wget
   brew_install whatsapp
