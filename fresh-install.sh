@@ -49,9 +49,16 @@ function pip3_install {
   echo "✅ $1"
 }
 
+function apt_install {
+  if ! dpkg -s "$1" >/dev/null 2>&1; then
+    sudo apt install -y "$@"
+  fi
+  echo "✅ $1"
+}
+
 echo "Installing homebrew"
 hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 
 if [ "$(uname)" = "Darwin" ]
 then
@@ -140,13 +147,14 @@ then
   echo
   echo "[APT]"
   echo
-  sudo apt update
-  sudo apt install -y build-essential
-  sudo apt install -y curl
-  sudo apt install -y git
-  sudo apt install -y tmux
-  sudo apt install -y vim
-  sudo apt install -y zsh
+  echo "Updating..."
+  sudo apt update -qq
+  apt_install build-essential
+  apt_install curl
+  apt_install git
+  apt_install tmux
+  apt_install vim
+  apt_install zsh
 
   echo
   echo "[Homebrew]"
@@ -160,7 +168,7 @@ fi
 echo
 echo "[asdf]"
 echo
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf install nodejs $node_version
 asdf global nodejs $node_version
@@ -183,12 +191,6 @@ npm_install tldr
 npm_install trash-cli
 npm_install typescript
 npm_install vercel
-
-echo
-echo "[pip]"
-echo
-pip3_install neovim --user
-pip3_install grip
 
 echo
 echo "[oh-my-zsh]"
