@@ -49,16 +49,16 @@ function pip3_install {
   echo "✅ $1"
 }
 
+echo "Installing homebrew"
+hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 if [ "$(uname)" = "Darwin" ]
 then
   echo "[[ macOS ]]"
   echo
   gcc 2> /dev/null || xcode-select -p 1>/dev/null || ( echo "Install xcode tools with `xcode-select --install`" && exit )
   pgrep oahd > /dev/null || softwareupdate --install-rosetta
-
-  echo "Installing homebrew"
-  hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  eval "$(/opt/homebrew/bin/brew shellenv)"
 
   echo
   echo "[Homebrew]"
@@ -144,24 +144,17 @@ then
   sudo apt install -y build-essential
   sudo apt install -y curl
   sudo apt install -y git
-  sudo apt install -y neovim
-  sudo apt install -y python3
-  sudo apt install -y software-properties-common
   sudo apt install -y tmux
   sudo apt install -y vim
   sudo apt install -y zsh
 
   echo
-  echo "[rust & cargo]"
+  echo "[Homebrew]"
   echo
-  hash cargo 2>/dev/null || curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
-
-  echo
-  echo "[cargo packages]"
-  echo
-  # cargo install watchman
-  cargo install git-delta
-  cargo install ripgrep
+  brew_install git-delta
+  brew_install neovim
+  brew_install ripgrep
+  brew_install tmuxinator
 fi
 
 echo
