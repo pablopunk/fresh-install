@@ -90,6 +90,7 @@ then
   brew_install latest
   brew_install missive
   brew_install monitorcontrol
+  brew_install orbstack
   brew_install python
   brew_install raycast
   brew_install rectangle
