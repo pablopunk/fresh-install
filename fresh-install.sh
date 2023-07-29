@@ -88,6 +88,7 @@ then
   brew_install karabiner-elements
   brew_install kitty
   brew_install latest
+  brew_install lazygit
   brew_install missive
   brew_install monitorcontrol
   brew_install orbstack
@@ -161,6 +162,7 @@ then
   echo "[Homebrew]"
   echo
   brew_install git-delta
+  brew_install lazygit
   brew_install neovim
   brew_install ripgrep
   brew_install tmuxinator
