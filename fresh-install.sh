@@ -5,7 +5,7 @@ sudo echo # require sudo perms
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an install.sh script
 # node_version="$(curl -s https://versions.pablopunk.com/api/node/v16/latest)"
-node_version="18.16.0"
+node_version="18.17.1"
 email="pablo@pablopunk.com"
 
 # SCRIPT
