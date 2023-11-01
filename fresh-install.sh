@@ -98,6 +98,7 @@ then
   brew_install ripgrep
   brew_install slack
   brew_install spotify
+  brew_install starship
   brew_install tmux
   brew_install tmuxinator
   brew_install typescript-language-server
