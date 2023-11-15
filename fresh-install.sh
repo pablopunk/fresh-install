@@ -80,6 +80,7 @@ then
   brew_install discord
   brew_install docker
   brew_install docker-compose
+  brew_install fd
   brew_install git-delta
   brew_install google-chrome
   brew_install google-drive
@@ -162,6 +163,7 @@ then
   echo
   echo "[Homebrew]"
   echo
+  brew_install fd
   brew_install git-delta
   brew_install lazygit
   brew_install neovim
@@ -186,7 +188,6 @@ npm_install @typescript-eslint/parser
 npm_install bashy
 npm_install eslint
 npm_install eslint-plugin-react
-npm_install fd-find
 npm_install neovim
 npm_install odf
 npm_install pino-pretty
