@@ -72,6 +72,7 @@ then
   echo
   brew_install alt-tab
   brew_install arc
+  brew_install arq
   brew_install asdf
   brew_install bash-completion
   brew_install cleanshot
