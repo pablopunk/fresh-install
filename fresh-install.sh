@@ -167,7 +167,7 @@ then
   brew_install fd
   brew_install git-delta
   brew_install lazygit
-  brew_install neovim
+  brew_install neovim --HEAD
   brew_install ripgrep
   brew_install starship
   brew_install tmuxinator
