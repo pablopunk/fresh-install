@@ -86,6 +86,7 @@ then
   brew_install google-chrome
   brew_install google-drive
   brew_install helix
+  brew_install hiddenbar
   brew_install homebrew/cask-fonts/font-caskaydia-cove-nerd-font
   brew_install karabiner-elements
   brew_install kitty
