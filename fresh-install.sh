@@ -1,14 +1,11 @@
-sudo echo # require sudo perms
+sudo echo -n # require sudo perms
 
 # VARIABLES
 
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an install.sh script
-# node_version="$(curl -s https://versions.pablopunk.com/api/node/v16/latest)"
 node_version="18.17.1"
 email="pablo@pablopunk.com"
-
-# SCRIPT
 
 if [ ! -f ~/.ssh/id_rsa ]; then
   echo "Github SSH keys"
@@ -32,44 +29,45 @@ brew_list=""
 function brew_install {
   [[ -z $brew_list ]] && brew_list="$(brew list)" # cache installed brew packages
   [[ -z "$(echo $brew_list | grep -w $1)" ]] && brew install $1 > /dev/null # install only if it's not installed
-  echo "✅ $1"
+  echo "✔︎ $1"
 }
 
 npm_list=""
 function npm_install {
   [[ -z $npm_list ]] && npm_list="$(npm list -g --depth=0)" # cache installed npm packages
   [[ -z "$(echo $npm_list | grep -w $1)" ]] && npm install -g $1 > /dev/null # install only if it's not installed
-  echo "✅ $1"
+  echo "✔︎ $1"
 }
 
 pip3_list=""
 function pip3_install {
   [[ -z $pip3_list ]] && pip3_list="$(python3 -m pip list)" # cache installed pip3 packages
   [[ -z "$(echo $pip3_list | grep -w $1)" ]] && python3 -m pip install $@ > /dev/null # install only if it's not installed
-  echo "✅ $1"
+  echo "✔︎ $1"
 }
 
 function apt_install {
   if ! dpkg -s "$1" >/dev/null 2>&1; then
     sudo apt install -y "$@"
   fi
-  echo "✅ $1"
+  echo "✔︎ $1"
 }
 
-echo "Installing homebrew"
+function section {
+  echo "-> $@"
+}
+
+section Homebrew install
 hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 
 if [ "$(uname)" = "Darwin" ]
 then
-  echo "[[ macOS ]]"
-  echo
+  section macOS
   gcc 2> /dev/null || xcode-select -p 1>/dev/null || ( echo "Install xcode tools with `xcode-select --install`" && exit )
   pgrep oahd > /dev/null || softwareupdate --install-rosetta
 
-  echo
-  echo "[Homebrew]"
-  echo
+  section Homebrew packages
   brew_install alt-tab
   brew_install arc
   brew_install arq
@@ -112,7 +110,7 @@ then
   brew_install zsh-autosuggestions
   brew_install zsh-syntax-highlighting
 
-  echo "Apple configs"
+  section macOS settings
   # don't restore apps on reboot
   defaults write -g ApplePersistence -bool no
   # tap to click
@@ -148,13 +146,11 @@ then
 
 elif [ "$(uname)" = "Linux" ]
 then
-  echo "[[ Linux ]]"
+  section Linux
 
-  echo
-  echo "[APT]"
-  echo
-  echo "Updating..."
+  section APT update
   sudo apt update -qq
+  section APT packages
   apt_install build-essential
   apt_install curl
   apt_install git
@@ -162,9 +158,7 @@ then
   apt_install vim
   apt_install zsh
 
-  echo
-  echo "[Homebrew]"
-  echo
+  section Homebrew packages
   brew_install fd
   brew_install git-delta
   brew_install lazygit
@@ -174,17 +168,13 @@ then
   brew_install tmuxinator
 fi
 
-echo
-echo "[asdf]"
-echo
+section asdf
 . $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf install nodejs $node_version
 asdf global nodejs $node_version
 
-echo
-echo "[NPM tools]"
-echo
+section NPM
 npm_install @typescript-eslint/eslint-plugin
 npm_install @typescript-eslint/parser
 npm_install bashy
@@ -200,17 +190,13 @@ npm_install trash-cli
 npm_install typescript
 npm_install vercel
 
-echo
-echo "[oh-my-zsh]"
-echo
+section oh-my-zsh
 if [ ! -d $HOME/.oh-my-zsh ]
 then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
-echo
-echo "[dotfiles]"
-echo
+section dotfiles
 if [ ! -d $dotfiles_folder ]
 then
   git clone $dotfiles_repo $dotfiles_folder
