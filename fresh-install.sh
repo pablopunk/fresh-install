@@ -76,6 +76,7 @@ then
   brew_install cleanshot
   brew_install coreutils
   brew_install cron
+  brew_install cyberduck
   brew_install discord
   brew_install docker
   brew_install docker-compose
