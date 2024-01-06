@@ -204,4 +204,7 @@ then
   bash $dotfiles_folder/install.sh
 fi
 
+section neovim
+nvim --headless "+Lazy! install" +qa > /dev/null # install plugins
+
 echo
