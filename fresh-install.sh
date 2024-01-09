@@ -4,7 +4,7 @@ sudo echo -n # require sudo perms
 
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an install.sh script
-node_version="18.17.1"
+node_version="20.10.0"
 email="pablo@pablopunk.com"
 
 if [ ! -f ~/.ssh/id_rsa ]; then
@@ -71,7 +71,6 @@ then
   brew_install alt-tab
   brew_install arc
   brew_install arq
-  brew_install asdf
   brew_install bash-completion
   brew_install cleanshot
   brew_install coreutils
@@ -169,11 +168,11 @@ then
   brew_install tmuxinator
 fi
 
-section asdf
-. $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs $node_version
-asdf global nodejs $node_version
+section mise
+curl https://mise.jdx.dev/install.sh | sh
+eval "$(~/.local/bin/mise activate zsh)"
+export PATH="$HOME/.local/share/mise/shims:$PATH"
+mise use --global node@$node_version
 
 section NPM
 npm_install @typescript-eslint/eslint-plugin
