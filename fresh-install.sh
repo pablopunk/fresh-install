@@ -71,6 +71,7 @@ then
   brew_install alt-tab
   brew_install arc
   brew_install arq
+  brew_install bartender
   brew_install bash-completion
   brew_install cleanshot
   brew_install coreutils
@@ -84,7 +85,6 @@ then
   brew_install google-chrome
   brew_install google-drive
   brew_install helix
-  brew_install hiddenbar
   brew_install homebrew/cask-fonts/font-caskaydia-cove-nerd-font
   brew_install karabiner-elements
   brew_install kitty
