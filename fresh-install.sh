@@ -82,7 +82,6 @@ then
   brew_install fd
   brew_install git-delta
   brew_install google-chrome
-  brew_install google-drive
   brew_install helix
   brew_install homebrew/cask-fonts/font-caskaydia-cove-nerd-font
   brew_install karabiner-elements
