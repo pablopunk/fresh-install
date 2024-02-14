@@ -78,12 +78,11 @@ then
   brew_install cyberduck
   brew_install discord
   brew_install docker
-  brew_install docker-compose
+  brew_install homebrew/core/docker-compose
   brew_install fd
   brew_install git-delta
   brew_install google-chrome
   brew_install helix
-  brew_install homebrew/cask-fonts/font-caskaydia-cove-nerd-font
   brew_install karabiner-elements
   brew_install kitty
   brew_install latest
