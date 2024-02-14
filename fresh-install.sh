@@ -166,7 +166,7 @@ then
 fi
 
 section mise
-curl https://mise.jdx.dev/install.sh | sh
+hash mise 2>/dev/null || curl https://mise.jdx.dev/install.sh | sh
 eval "$(~/.local/bin/mise activate zsh)"
 export PATH="$HOME/.local/share/mise/shims:$PATH"
 mise use --global node@$node_version
@@ -188,19 +188,13 @@ npm_install typescript
 npm_install vercel
 
 section oh-my-zsh
-if [ ! -d $HOME/.oh-my-zsh ]
-then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
+[[ -d $HOME/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 section dotfiles
-if [ ! -d $dotfiles_folder ]
+if [[ -d $dotfiles_folder ]]
 then
   git clone $dotfiles_repo $dotfiles_folder
   bash $dotfiles_folder/install.sh
 fi
-
-section neovim
-nvim --headless "+Lazy! install" +qa > /dev/null # install plugins
 
 echo
