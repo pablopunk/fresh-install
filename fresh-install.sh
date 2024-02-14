@@ -93,7 +93,6 @@ then
   brew_install orbstack
   brew_install python
   brew_install raycast
-  brew_install rectangle
   brew_install ripgrep
   brew_install slack
   brew_install spotify
