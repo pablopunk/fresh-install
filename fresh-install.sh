@@ -4,7 +4,6 @@ sudo echo -n # require sudo perms
 
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles"
-node_version="20.10.0"
 email="pablo@pablopunk.com"
 
 if [ ! -f ~/.ssh/id_rsa ]; then
@@ -169,16 +168,6 @@ then
   brew_install fd
   brew_install tldr
   brew_install trash-cli
-fi
-
-echo
-section mise
-if ! hash mise 2>/dev/null;
-then
-  hash mise 2>/dev/null || curl https://mise.jdx.dev/install.sh | sh
-  eval "$(~/.local/bin/mise activate zsh)"
-  export PATH="$HOME/.local/share/mise/shims:$PATH"
-  mise use --global node@$node_version
 fi
 
 echo
