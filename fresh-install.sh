@@ -54,16 +54,31 @@ function apt_install {
 }
 
 function section {
-  echo
   echo -e "\033[94m→\033[0m $@"
 }
 
 section Homebrew install
 hash brew 2>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+section dotfiles
+if [[ ! -d $dotfiles_folder ]]
+then
+  git clone $dotfiles_repo $dotfiles_folder
+  pushd $dotfiles_folder
+    bash link.sh
+    bash bootstrap.sh
+  popd
+fi
+
+section oh-my-zsh
+[[ -d $HOME/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+
 
 if [ "$(uname)" = "Darwin" ]
 then
+  echo
   section macOS
   gcc 2> /dev/null || xcode-select -p 1>/dev/null || ( echo "Install xcode tools with `xcode-select --install`" && exit )
   pgrep oahd > /dev/null || softwareupdate --install-rosetta
@@ -88,6 +103,7 @@ then
   brew_install whatsapp
   brew_install zoom
 
+  echo
   section Homebrew packages
   brew_install coreutils
   brew_install docker
@@ -98,6 +114,7 @@ then
   brew_install watchman
   brew_install wget
 
+  echo
   section macOS settings
   # don't restore apps on reboot
   defaults write -g ApplePersistence -bool no
@@ -134,27 +151,26 @@ then
 
 elif [ "$(uname)" = "Linux" ]
 then
+  echo
   section Linux
 
   section APT update
   sudo apt update -qq
 
+  echo
   section APT packages
   apt_install build-essential
   apt_install curl
-  apt_install git
-  apt_install tmux
-  apt_install vim
-  apt_install zsh
 
+  echo
   section Homebrew packages
   brew_install fd
   brew_install tldr
   brew_install trash-cli
 fi
 
+echo
 section mise
-
 if ! hash mise 2>/dev/null;
 then
   hash mise 2>/dev/null || curl https://mise.jdx.dev/install.sh | sh
@@ -163,6 +179,7 @@ then
   mise use --global node@$node_version
 fi
 
+echo
 section NPM
 npm_install @typescript-eslint/eslint-plugin
 npm_install @typescript-eslint/parser
@@ -173,18 +190,5 @@ npm_install odf
 npm_install pino-pretty
 npm_install prettier
 npm_install typescript
-
-section oh-my-zsh
-[[ -d $HOME/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-section dotfiles
-if [[ ! -d $dotfiles_folder ]]
-then
-  git clone $dotfiles_repo $dotfiles_folder
-  pushd $dotfiles_folder
-    bash link.sh
-    bash bootstrap.sh
-  popd
-fi
 
 echo
