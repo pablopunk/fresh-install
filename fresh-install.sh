@@ -3,7 +3,7 @@ sudo echo -n # require sudo perms
 # VARIABLES
 
 dotfiles_folder="$HOME/.dotfiles"
-dotfiles_repo="git@github.com:pablopunk/dotfiles" # The repo should have an install.sh script
+dotfiles_repo="git@github.com:pablopunk/dotfiles"
 node_version="20.10.0"
 email="pablo@pablopunk.com"
 
@@ -29,32 +29,33 @@ brew_list=""
 function brew_install {
   [[ -z $brew_list ]] && brew_list="$(brew list)" # cache installed brew packages
   [[ -z "$(echo $brew_list | grep -w $1)" ]] && brew install $1 > /dev/null # install only if it's not installed
-  echo "✔︎ $1"
+  echo -e "\033[32m✔︎\033[0m $1"
 }
 
 npm_list=""
 function npm_install {
   [[ -z $npm_list ]] && npm_list="$(npm list -g --depth=0)" # cache installed npm packages
   [[ -z "$(echo $npm_list | grep -w $1)" ]] && npm install -g $1 > /dev/null # install only if it's not installed
-  echo "✔︎ $1"
+  echo -e "\033[32m✔︎\033[0m $1"
 }
 
 pip3_list=""
 function pip3_install {
   [[ -z $pip3_list ]] && pip3_list="$(python3 -m pip list)" # cache installed pip3 packages
   [[ -z "$(echo $pip3_list | grep -w $1)" ]] && python3 -m pip install $@ > /dev/null # install only if it's not installed
-  echo "✔︎ $1"
+  echo -e "\033[32m✔︎\033[0m $1"
 }
 
 function apt_install {
   if ! dpkg -s "$1" >/dev/null 2>&1; then
     sudo apt install -y "$@"
   fi
-  echo "✔︎ $1"
+  echo -e "\033[32m✔︎\033[0m $1"
 }
 
 function section {
-  echo "-> $@"
+  echo
+  echo -e "\033[94m→\033[0m $@"
 }
 
 section Homebrew install
@@ -67,45 +68,35 @@ then
   gcc 2> /dev/null || xcode-select -p 1>/dev/null || ( echo "Install xcode tools with `xcode-select --install`" && exit )
   pgrep oahd > /dev/null || softwareupdate --install-rosetta
 
-  section Homebrew packages
+  section Homebrew casks
   brew_install alt-tab
   brew_install arc
   brew_install arq
-  brew_install bartender
-  brew_install bash-completion
   brew_install cleanshot
-  brew_install coreutils
   brew_install cyberduck
   brew_install discord
-  brew_install docker
-  brew_install homebrew/core/docker-compose
-  brew_install fd
-  brew_install git-delta
-  brew_install google-chrome
-  brew_install helix
-  brew_install karabiner-elements
-  brew_install kitty
+  brew_install hiddenbar
   brew_install latest
-  brew_install lazygit
   brew_install missive
   brew_install monitorcontrol
   brew_install notion-calendar
   brew_install orbstack
-  brew_install python
   brew_install raycast
-  brew_install ripgrep
   brew_install slack
   brew_install spotify
-  brew_install starship
-  brew_install tmux
-  brew_install tmuxinator
-  brew_install typescript-language-server
-  brew_install watchman
-  brew_install wget
+  brew_install trash-cli
   brew_install whatsapp
   brew_install zoom
-  brew_install zsh-autosuggestions
-  brew_install zsh-syntax-highlighting
+
+  section Homebrew packages
+  brew_install coreutils
+  brew_install docker
+  brew_install fd
+  brew_install homebrew/core/docker-compose
+  brew_install python
+  brew_install tldr
+  brew_install watchman
+  brew_install wget
 
   section macOS settings
   # don't restore apps on reboot
@@ -147,6 +138,7 @@ then
 
   section APT update
   sudo apt update -qq
+
   section APT packages
   apt_install build-essential
   apt_install curl
@@ -157,44 +149,42 @@ then
 
   section Homebrew packages
   brew_install fd
-  brew_install git-delta
-  brew_install lazygit
-  brew_install neovim --HEAD
-  brew_install ripgrep
-  brew_install starship
-  brew_install tmuxinator
+  brew_install tldr
+  brew_install trash-cli
 fi
 
 section mise
-hash mise 2>/dev/null || curl https://mise.jdx.dev/install.sh | sh
-eval "$(~/.local/bin/mise activate zsh)"
-export PATH="$HOME/.local/share/mise/shims:$PATH"
-mise use --global node@$node_version
+
+if ! hash mise 2>/dev/null;
+then
+  hash mise 2>/dev/null || curl https://mise.jdx.dev/install.sh | sh
+  eval "$(~/.local/bin/mise activate zsh)"
+  export PATH="$HOME/.local/share/mise/shims:$PATH"
+  mise use --global node@$node_version
+fi
 
 section NPM
 npm_install @typescript-eslint/eslint-plugin
 npm_install @typescript-eslint/parser
-npm_install bashy
 npm_install eslint
 npm_install eslint-plugin-react
 npm_install neovim
 npm_install odf
 npm_install pino-pretty
-npm_install pnpm@8
 npm_install prettier
-npm_install tldr
-npm_install trash-cli
 npm_install typescript
-npm_install vercel
 
 section oh-my-zsh
 [[ -d $HOME/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 section dotfiles
-if [[ -d $dotfiles_folder ]]
+if [[ ! -d $dotfiles_folder ]]
 then
   git clone $dotfiles_repo $dotfiles_folder
-  bash $dotfiles_folder/install.sh
+  pushd $dotfiles_folder
+    bash link.sh
+    bash bootstrap.sh
+  popd
 fi
 
 echo
