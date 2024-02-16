@@ -110,7 +110,6 @@ then
   brew_install docker
   brew_install fd
   brew_install homebrew/core/docker-compose
-  brew_install python
   brew_install tldr
   brew_install watchman
   brew_install wget
