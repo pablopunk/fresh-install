@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
+# vim:fileencoding=utf-8:ft=bash:foldmethod=marker
 
 sudo echo -n # require sudo perms
 
-# VARIABLES
-
+# Variables {{{
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo="git@github.com:pablopunk/dotfiles" # This repo should have an install.sh script
 email="pablo@pablopunk.com"
+# }}}
 
+# SSH key {{{
 if [ ! -f ~/.ssh/id_rsa ]; then
   echo "Github SSH keys"
   ssh-keygen -t rsa -b 4096 -C "$email"
@@ -25,7 +27,9 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   echo "Copy the public key above to Github and then run this script again"
   echo $url
 fi
+# }}}
 
+# Install functions {{{
 brew_list=""
 function brew_install {
   [[ -z $brew_list ]] && brew_list="$(brew list)" # cache installed brew packages
@@ -57,12 +61,18 @@ function apt_install {
 function section {
   echo -e "\033[94m→\033[0m $@"
 }
+# }}}
 
+# Homebrew {{{
 section Homebrew install
-if [[ ! -f /opt/homebrew/bin/brew ]]; then
+if [[ "$(uname)" = "Darwin" ]] && [[ ! -f /opt/homebrew/bin/brew ]]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ "$(uname)" = "Linux" ]] && [[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  sudo apt install -y curl 2>/dev/null 1>/dev/null
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 section dotfiles
 if [[ ! -d $dotfiles_folder ]]
@@ -72,12 +82,14 @@ then
     bash install.sh
   popd
 fi
+# }}}
 
+# oh-my-zsh {{{
 section oh-my-zsh
 [[ -d $HOME/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# }}}
 
-
-
+# macOS {{{
 if [ "$(uname)" = "Darwin" ]
 then
   echo
@@ -148,8 +160,9 @@ then
   defaults write NSGlobalDomain AppleShowAllExtensions -bool true
   # drag with trackpad (not sure if it works)
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -bool true
+# }}}
 
-
+# Linux {{{
 elif [ "$(uname)" = "Linux" ]
 then
   echo
@@ -169,7 +182,9 @@ then
   brew_install tldr
   brew_install trash-cli
 fi
+# }}}
 
+# NPM {{{
 echo
 section NPM
 npm_install @typescript-eslint/eslint-plugin
@@ -181,5 +196,6 @@ npm_install odf
 npm_install pino-pretty
 npm_install prettier
 npm_install typescript
+# }}}
 
 echo
