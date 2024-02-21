@@ -1,9 +1,11 @@
+#!/usr/bin/env bash
+
 sudo echo -n # require sudo perms
 
 # VARIABLES
 
 dotfiles_folder="$HOME/.dotfiles"
-dotfiles_repo="git@github.com:pablopunk/dotfiles"
+dotfiles_repo="git@github.com:pablopunk/dotfiles" # This repo should have an install.sh script
 email="pablo@pablopunk.com"
 
 if [ ! -f ~/.ssh/id_rsa ]; then
@@ -67,8 +69,7 @@ if [[ ! -d $dotfiles_folder ]]
 then
   git clone $dotfiles_repo $dotfiles_folder
   pushd $dotfiles_folder
-    bash link.sh
-    bash bootstrap.sh
+    bash install.sh
   popd
 fi
 
