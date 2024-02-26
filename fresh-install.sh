@@ -111,6 +111,7 @@ then
   brew_install notion-calendar
   brew_install orbstack
   brew_install raycast
+  brew_install scroll-reverser
   brew_install slack
   brew_install spotify
   brew_install trash-cli
