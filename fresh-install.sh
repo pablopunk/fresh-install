@@ -85,7 +85,6 @@ then
   pgrep oahd > /dev/null || softwareupdate --install-rosetta
 
   section Homebrew casks
-  brew_install alt-tab
   brew_install arc
   brew_install arq
   brew_install cleanshot
