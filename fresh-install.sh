@@ -104,6 +104,7 @@ then
   brew_install cleanshot
   brew_install cyberduck
   brew_install discord
+  brew_install gh
   brew_install hiddenbar
   brew_install latest
   brew_install missive
@@ -180,6 +181,7 @@ then
   echo
   section Homebrew packages
   brew_install fd
+  brew_install gh
   brew_install tldr
   brew_install trash-cli
 fi
