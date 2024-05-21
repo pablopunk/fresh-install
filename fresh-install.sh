@@ -88,7 +88,9 @@ fi
 section oh-my-zsh
 [[ -d $HOME/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 [[ -d $HOME/.oh-my-zsh/custom/plugins/zsh-github-copilot ]] || git clone https://github.com/loiccoyle/zsh-github-copilot ~/.oh-my-zsh/custom/plugins/zsh-github-copilot
-[[ gh extension list | grep gh-copilot > /dev/null ]] || gh extension install github/gh-copilot
+# TODO: gh auth login --web -h github.com
+#       ^ it will log you in and set up ssh key
+gh extension list | grep gh-copilot > /dev/null || gh extension install github/gh-copilot
 # }}}
 
 # macOS {{{
