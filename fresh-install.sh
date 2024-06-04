@@ -193,16 +193,9 @@ fi
 # NPM {{{
 echo
 section NPM
-npm_install @biomejs/biome
-npm_install @typescript-eslint/eslint-plugin
-npm_install @typescript-eslint/parser
-npm_install eslint
-npm_install eslint-plugin-react
 npm_install neovim
 npm_install odf
 npm_install pino-pretty
-npm_install prettier
-npm_install typescript
 # }}}
 
 echo
