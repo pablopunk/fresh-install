@@ -190,6 +190,7 @@ fi
 # NPM {{{
 echo
 section NPM
+npm_install @biomejs/biome
 npm_install @typescript-eslint/eslint-plugin
 npm_install @typescript-eslint/parser
 npm_install eslint
