@@ -9,26 +9,6 @@ dotfiles_repo="git@github.com:pablopunk/dotfiles" # This repo should have an ins
 email="pablo@pablopunk.com"
 # }}}
 
-# SSH key {{{
-if [ ! -f ~/.ssh/id_rsa ]; then
-  echo "Github SSH keys"
-  ssh-keygen -t rsa -b 4096 -C "$email"
-  ssh-add ~/.ssh/id_rsa
-  url="https://github.com/settings/ssh/new"
-  echo
-  echo "Title: $(hostname)"
-  echo
-  echo "Key:"
-  echo
-  cat ~/.ssh/id_rsa.pub
-  echo
-  [ -x "$(command -v xdg-open)" ] && xdg-open "$url"
-  [ -x "$(command -v open)" ] && open "$url"
-  echo "Copy the public key above to Github and then run this script again"
-  echo $url
-fi
-# }}}
-
 # Install functions {{{
 brew_list=""
 function brew_install {
@@ -88,8 +68,11 @@ fi
 section oh-my-zsh
 [[ -d $HOME/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 [[ -d $HOME/.oh-my-zsh/custom/plugins/zsh-github-copilot ]] || git clone https://github.com/loiccoyle/zsh-github-copilot ~/.oh-my-zsh/custom/plugins/zsh-github-copilot
-# TODO: gh auth login --web -h github.com
-#       ^ it will log you in and set up ssh key
+# }}}
+
+# Github cli and ssh {{{
+section Github cli
+gh auth status | grep "Logged in to github.com account pablopunk" > /dev/null || gh auth login --web -h github.com
 gh extension list | grep gh-copilot > /dev/null || gh extension install github/gh-copilot
 # }}}
 
