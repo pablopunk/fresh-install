@@ -91,7 +91,6 @@ then
   brew_install cyberduck
   brew_install discord
   brew_install gh
-  brew_install git-delta
   brew_install hiddenbar
   brew_install latest
   brew_install missive
