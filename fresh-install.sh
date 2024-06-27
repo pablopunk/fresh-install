@@ -86,7 +86,6 @@ then
 
   section Homebrew casks
   brew_install arc
-  brew_install arq
   brew_install cleanshot
   brew_install cyberduck
   brew_install discord
