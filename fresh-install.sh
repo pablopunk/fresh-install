@@ -54,26 +54,10 @@ elif [[ "$(uname)" = "Linux" ]] && [[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-section dotfiles
-if [[ ! -d $dotfiles_folder ]]
-then
-  git clone $dotfiles_repo $dotfiles_folder
-  pushd $dotfiles_folder
-    bash install.sh
-  popd
-fi
-# }}}
-
 # oh-my-zsh {{{
 section oh-my-zsh
 [[ -d $HOME/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 [[ -d $HOME/.oh-my-zsh/custom/plugins/zsh-github-copilot ]] || git clone https://github.com/loiccoyle/zsh-github-copilot ~/.oh-my-zsh/custom/plugins/zsh-github-copilot
-# }}}
-
-# Github cli and ssh {{{
-section Github cli
-gh auth status | grep "Logged in to github.com account pablopunk" > /dev/null || gh auth login --web -h github.com
-gh extension list | grep gh-copilot > /dev/null || gh extension install github/gh-copilot
 # }}}
 
 # macOS {{{
@@ -85,31 +69,23 @@ then
   pgrep oahd > /dev/null || softwareupdate --install-rosetta
 
   section Homebrew casks
+  brew_install 1password
   brew_install arc
-  brew_install cleanshot
-  brew_install cyberduck
-  brew_install discord
   brew_install gh
-  brew_install hiddenbar
   brew_install latest
   brew_install missive
   brew_install monitorcontrol
   brew_install notion-calendar
-  brew_install orbstack
   brew_install raycast
   brew_install scroll-reverser
-  brew_install slack
   brew_install spotify
   brew_install trash-cli
   brew_install whatsapp
-  brew_install zoom
 
   echo
   section Homebrew packages
   brew_install coreutils
-  brew_install docker
   brew_install fd
-  brew_install homebrew/core/docker-compose
   brew_install tldr
   brew_install watchman
   brew_install wget
@@ -169,6 +145,22 @@ then
   brew_install gh
   brew_install tldr
   brew_install trash-cli
+fi
+# }}}
+
+# Github cli and ssh {{{
+section Github cli
+gh auth status | grep "Logged in to github.com account" > /dev/null || gh auth login --web -h github.com
+gh extension list | grep gh-copilot > /dev/null || gh extension install github/gh-copilot
+# }}}
+
+section dotfiles
+if [[ ! -d $dotfiles_folder ]]
+then
+  git clone $dotfiles_repo $dotfiles_folder
+  pushd $dotfiles_folder
+    bash install.sh
+  popd
 fi
 # }}}
 
