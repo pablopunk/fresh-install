@@ -164,12 +164,4 @@ then
 fi
 # }}}
 
-# NPM {{{
-echo
-section NPM
-npm_install neovim
-npm_install odf
-npm_install pino-pretty
-# }}}
-
 echo
