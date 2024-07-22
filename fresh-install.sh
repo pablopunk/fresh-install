@@ -53,11 +53,6 @@ elif [[ "$(uname)" = "Linux" ]] && [[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
-
-# oh-my-zsh {{{
-section oh-my-zsh
-[[ -d $HOME/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-[[ -d $HOME/.oh-my-zsh/custom/plugins/zsh-github-copilot ]] || git clone https://github.com/loiccoyle/zsh-github-copilot ~/.oh-my-zsh/custom/plugins/zsh-github-copilot
 # }}}
 
 # macOS {{{
@@ -154,6 +149,7 @@ gh auth status | grep "Logged in to github.com account" > /dev/null || gh auth l
 gh extension list | grep gh-copilot > /dev/null || gh extension install github/gh-copilot
 # }}}
 
+# dotfiles {{{
 section dotfiles
 if [[ ! -d $dotfiles_folder ]]
 then
