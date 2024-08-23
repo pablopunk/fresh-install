@@ -74,7 +74,6 @@ then
   brew_install raycast
   brew_install scroll-reverser
   brew_install spotify
-  brew_install trash-cli
   brew_install whatsapp
 
   echo
@@ -139,7 +138,6 @@ then
   brew_install fd
   brew_install gh
   brew_install tldr
-  brew_install trash-cli
 fi
 # }}}
 
