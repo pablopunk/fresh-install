@@ -5,8 +5,8 @@ sudo echo -n # require sudo perms
 
 # Variables {{{
 dotfiles_folder="$HOME/.dotfiles"
-dotfiles_repo="git@github.com:pablopunk/dotfiles" # This repo should have an install.sh script
-email="pablo@pablopunk.com"
+dotfiles_repo_https="https://github.com:pablopunk/dotfiles"
+dotfiles_repo_ssh="git@github.com:pablopunk/dotfiles"
 # }}}
 
 # Install functions {{{
@@ -60,65 +60,9 @@ if [ "$(uname)" = "Darwin" ]
 then
   echo
   section macOS
-  gcc 2> /dev/null || xcode-select -p 1>/dev/null || ( echo "Install xcode tools with `xcode-select --install`" && exit )
+  gcc 2> /dev/null || xcode-select -p 1>/dev/null || ( xcode-select --install )
   pgrep oahd > /dev/null || softwareupdate --install-rosetta
-
-  section Homebrew casks
-  brew_install 1password
-  brew_install arc
-  brew_install gh
-  brew_install latest
-  brew_install missive
-  brew_install monitorcontrol
-  brew_install notion-calendar
-  brew_install raycast
-  brew_install scroll-reverser
-  brew_install spotify
-  brew_install whatsapp
-
-  echo
-  section Homebrew packages
-  brew_install coreutils
-  brew_install fd
-  brew_install tldr
-  brew_install watchman
-  brew_install wget
-
-  echo
-  section macOS settings
-  # don't restore apps on reboot
-  defaults write -g ApplePersistence -bool no
-  # tap to click
-  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-  defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-  defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-  # mission control on three fingers up and app windows on down
-  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerVertSwipeGesture -int 2
-  # disable hold keys to show keyboard popup keys
-  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-  # better key repeat
-  defaults write NSGlobalDomain InitialKeyRepeat -int 15
-  defaults write NSGlobalDomain KeyRepeat -int 1
-  # no delay for dock hiding
-  defaults write com.apple.dock autohide-delay -float 0
-  dscacheutil -flushcache
-  # windows minimize on app icons
-  defaults write com.apple.dock minimize-to-application -bool true
-  # scaling effect on minimize
-  defaults write com.apple.dock mineffect -string "scale"
-  # make mission control work like exposé
-  defaults write com.apple.dock expose-group-by-app -bool false
-  # make Dock icons of hidden applications translucent
-  defaults write com.apple.dock showhidden -bool true
-  # show status bar and path on Finder
-  defaults write com.apple.finder ShowStatusBar -bool true
-  defaults write com.apple.finder ShowPathbar -bool true
-  # show all file extensions
-  defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-  # drag with trackpad (not sure if it works)
-  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -bool true
 # }}}
-
 # Linux {{{
 elif [ "$(uname)" = "Linux" ]
 then
@@ -132,30 +76,26 @@ then
   section APT packages
   apt_install build-essential
   apt_install curl
-
-  echo
-  section Homebrew packages
-  brew_install fd
-  brew_install gh
-  brew_install tldr
+  apt_install git
 fi
 # }}}
 
-# Github cli and ssh {{{
-section Github cli
-gh auth status | grep "Logged in to github.com account" > /dev/null || gh auth login --web -h github.com
-gh extension list | grep gh-copilot > /dev/null || gh extension install github/gh-copilot
-# }}}
-
-# dotfiles {{{
-section dotfiles
+# Dotfiles {{{
+section Dotfiles
+brew_install pablopunk/brew/dot
 if [[ ! -d $dotfiles_folder ]]
 then
-  git clone $dotfiles_repo $dotfiles_folder
-  pushd $dotfiles_folder
-    bash install.sh
-  popd
+  git clone $dotfiles_repo_https $dotfiles_folder
+  echo
+  echo "Dotfiles are under $dotfiles_folder"
+  echo "Go run dot with any of the profiles. Example:"
+  echo
+  echo "  cd $dotfiles_folder && dot m1pro"
+  echo
+  echo "If you've set up an ssh key for github, you can also run:"
+  echo
+  echo "  cd $dotfiles_folder && git remote set-url origin $dotfiles_repo_ssh"
+  echo
 fi
-# }}}
 
 echo
