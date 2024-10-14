@@ -1,19 +1,10 @@
 # *NIX Fresh Installation
 
-> Essential tools and apps you are too lazy to install
+> Setup a fresh installation of *macOS* or *debian based linux* in a few minutes.
 
 Don't like to recovering your system from a backup? With this tool you can install a fresh copy of *macOS* or *debian based linux* any day and still have all the tools you want.
 
-
-## Requirements
-
-* bash
-* curl
-* git
-
 ## Usage
-
-To get specific tools/apps, just fork this repo to fit your needs.
 
 ### Easy install:
 
@@ -23,4 +14,6 @@ curl -fsSL https://raw.githubusercontent.com/pablopunk/fresh-install/master/fres
 
 ## What does this install?
 
-Check the [`fresh-install.sh`](./fresh-install.sh) file to see all the tools that are being installed. On the top, you can modify the variables to fit your needs.
+All tools/apps have been moved to my [dotfiles](https://github.com/pablopunk/dotfiles) repo, which is using
+[*dot*](https://github.com/pablopunk/dot) to manage all of my apps, toosl, and configs. This repo will make clone
+my dotfiles repo and `dot` so you can run it yourself.
