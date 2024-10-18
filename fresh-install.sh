@@ -3,30 +3,14 @@
 
 sudo echo -n # require sudo perms
 
-# Variables {{{
 dotfiles_folder="$HOME/.dotfiles"
-dotfiles_repo_https="https://github.com/pablopunk/dotfiles"
-# }}}
+dotfiles_url="https://github.com/pablopunk/dotfiles"
 
 # Install functions {{{
 brew_list=""
 function brew_install {
   [[ -z $brew_list ]] && brew_list="$(brew list)" # cache installed brew packages
   [[ -z "$(echo $brew_list | grep -w $1)" ]] && brew install $1 > /dev/null # install only if it's not installed
-  echo -e "\033[32m✔︎\033[0m $1"
-}
-
-npm_list=""
-function npm_install {
-  [[ -z $npm_list ]] && npm_list="$(npm list -g --depth=0)" # cache installed npm packages
-  [[ -z "$(echo $npm_list | grep -w $1)" ]] && npm install -g $1 > /dev/null # install only if it's not installed
-  echo -e "\033[32m✔︎\033[0m $1"
-}
-
-pip3_list=""
-function pip3_install {
-  [[ -z $pip3_list ]] && pip3_list="$(python3 -m pip list)" # cache installed pip3 packages
-  [[ -z "$(echo $pip3_list | grep -w $1)" ]] && python3 -m pip install $@ > /dev/null # install only if it's not installed
   echo -e "\033[32m✔︎\033[0m $1"
 }
 
@@ -85,7 +69,7 @@ section Dotfiles
 brew_install pablopunk/brew/dot
 if [[ ! -d $dotfiles_folder ]]
 then
-  git clone $dotfiles_repo_https $dotfiles_folder
+  git clone $dotfiles_url $dotfiles_folder
   echo
   echo "Dotfiles are under $dotfiles_folder"
   echo "Go run dot with any of the profiles. Example:"
