@@ -63,6 +63,7 @@ then
   gcc 2> /dev/null || xcode-select -p 1>/dev/null || ( xcode-select --install )
   pgrep oahd > /dev/null || softwareupdate --install-rosetta
 # }}}
+
 # Linux {{{
 elif [ "$(uname)" = "Linux" ]
 then
@@ -91,10 +92,6 @@ then
   echo "Go run dot with any of the profiles. Example:"
   echo
   echo "  cd $dotfiles_folder && dot m1pro"
-  echo
-  echo "If you've set up an ssh key for github, you can also run:"
-  echo
-  echo "  cd $dotfiles_folder && git remote set-url origin $dotfiles_repo_ssh"
   echo
 fi
 
