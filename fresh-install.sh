@@ -6,7 +6,6 @@ sudo echo -n # require sudo perms
 # Variables {{{
 dotfiles_folder="$HOME/.dotfiles"
 dotfiles_repo_https="https://github.com/pablopunk/dotfiles"
-dotfiles_repo_ssh="git@github.com:pablopunk/dotfiles"
 # }}}
 
 # Install functions {{{
