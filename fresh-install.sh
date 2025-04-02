@@ -45,6 +45,8 @@ then
   section macOS
   gcc 2> /dev/null || xcode-select -p 1>/dev/null || ( xcode-select --install )
   pgrep oahd > /dev/null || softwareupdate --install-rosetta
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  brew install pablopunk/brew/dot
 # }}}
 
 # Linux {{{
