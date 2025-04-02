@@ -47,6 +47,7 @@ then
   pgrep oahd > /dev/null || softwareupdate --install-rosetta
   eval "$(/opt/homebrew/bin/brew shellenv)"
   brew_install pablopunk/brew/dot
+  brew_install wget
 # }}}
 
 # Linux {{{
@@ -63,6 +64,7 @@ then
   apt_install build-essential
   apt_install curl
   apt_install git
+  apt_install wget
 fi
 # }}}
 
