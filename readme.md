@@ -1,3 +1,9 @@
+
+> [!IMPORTANT]  
+> This repo is not mantained anymore. I've made a tool to have all your dotfiles, tools, and apps, in one repo: [dot](https://github.com/pablopunk/dot)
+
+---
+
 # *NIX Fresh Installation
 
 > Setup a fresh installation of *macOS* or *debian based linux* in a few minutes.
