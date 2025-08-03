@@ -1,6 +1,6 @@
 
 > [!IMPORTANT]  
-> This repo is not mantained anymore. I've made a tool to have all your dotfiles, tools, and apps, in one repo: [dot](https://github.com/pablopunk/dot)
+> **THIS REPO IS DEPRECATED**. I've made a tool to have all your dotfiles, tools, and apps, in one repo: [dot](https://github.com/pablopunk/dot)
 
 ---
 
